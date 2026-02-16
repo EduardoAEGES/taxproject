@@ -258,7 +258,85 @@ body {
     cursor: pointer;
 }
 
+/* Responsiveness for Header Overlap */
+@media (max-width: 1250px) {
+    .long-text {
+        display: none;
+    }
+
+    .header-center-title {
+        font-size: 18px;
+        /* Slightly smaller title */
+        left: 50%;
+        /* Center it properly when space allows */
+        transform: translateX(-50%);
+    }
+}
+
 .btn-simulator:hover {
     background-color: #003366;
     color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header {
+        height: auto;
+        /* Allow height to grow */
+        padding: 10px 20px;
+        flex-direction: column;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .header-center-title {
+        position: static;
+        /* Stack naturally */
+        transform: none;
+        left: auto;
+        font-size: 16px;
+        /* Smaller title */
+        white-space: normal;
+        /* Allow wrapping */
+        order: 2;
+        /* Place below logo */
+        margin: 5px 0;
+    }
+
+    .logo-container {
+        order: 1;
+    }
+
+    .header-nav {
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .menu-trigger {
+        justify-content: center;
+        width: 100%;
+        background-color: #f0f0f0;
+        /* Distinct background for touch target */
+        font-size: 14px;
+    }
+
+    .dropdown-menu {
+        width: 100%;
+        /* Full width dropdown */
+        position: static;
+        /* Stack in flow when open */
+        transform: none;
+        box-shadow: none;
+        border: 1px solid #eee;
+    }
+
+    .container {
+        margin-top: 180px;
+        /* Adjust for taller header */
+    }
 }

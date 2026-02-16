@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =================================================================================
     // Si subes tu backend a Render/Railway, cambia esta URL.
     // Ejemplo: const BACKEND_URL = 'https://mi-backend.onrender.com';
-    const BACKEND_URL = 'http://localhost:5000';
+    const BACKEND_URL = 'https://taxproject-grh5.onrender.com';
     // =================================================================================
 
     const rucInput = document.getElementById('ruc-input');

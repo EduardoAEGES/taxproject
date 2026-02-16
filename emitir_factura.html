@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNAT - Emitir Factura</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="comprobantes.css">
+    <style>
+        /* Specific styles for emitir_factura.html */
+        .invoice-header {
+            border: 1px solid #7facce;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            font-size: 11px;
+        }
+
+        .invoice-header-row {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .invoice-label {
+            width: 150px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .invoice-value {
+            flex-grow: 1;
+            color: #333;
+        }
+
+        .invoice-value.grey-text {
+            color: #666;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 5px;
+            gap: 5px;
+        }
+
+        .items-table-container {
+            border: 1px solid #ccc;
+            min-height: 200px;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .items-table th {
+            background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+            border: 1px solid #ccc;
+            padding: 4px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .items-table td {
+            border: 1px solid #eee;
+            padding: 4px;
+        }
+
+        .totals-section {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 11px;
+        }
+
+        .totals-table {
+            width: 300px;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        .totals-label {
+            font-weight: bold;
+            color: #003366;
+            text-align: right;
+            padding-right: 10px;
+            width: 150px;
+        }
+
+        .totals-value {
+            width: 100px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn-toolbar {
+            border: 1px solid #ccc;
+            background: linear-gradient(to bottom, #fff, #e6e6e6);
+            padding: 2px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="sol-header">
+        <div class="header-content">
+            <div class="logo-area">
+                <a href="menu_sol.html">
+                    <img src="LOGO_CERTUS_SUNAT.png" alt="CERTUS SUNAT Logo" class="logo">
+                </a>
+            </div>
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-envelope"></i> Buzón Electrónico</a>
+                <a href="#"><i class="fas fa-star"></i> Favoritos <i class="fas fa-caret-down"></i></a>
+                <a href="#"><i class="fas fa-print"></i> Imprimir</a>
+            </div>
+        </div>
+        <div class="user-bar-blue">
+            <div class="date-display">15/02/2026 21:10</div>
+            <div class="user-info-right">
+                <span>Bienvenido, FABRINSUR GROUP S.R.L. <i class="fas fa-caret-down"></i></span>
+                <span class="domicilio">Domicilio: Habido</span>
+                <button class="btn-salir">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="left-sidebar">
+            <div class="sidebar-header">
+                <a href="menu_sol.html" class="home-link"><i class="fas fa-home"></i> Ir al inicio</a>
+                <i class="fas fa-chevron-left"></i>
+            </div>
+
+            <div class="sidebar-menu">
+                <h3 class="menu-title">COMPROBANTES DE PAGO</h3>
+                <ul class="menu-items">
+                    <li class="active-parent">
+                        <a href="#"><i class="fas fa-caret-down"></i> SEE - SOL</a>
+                        <ul class="submenu">
+                            <li class="active-parent">
+                                <a href="#"><i class="fas fa-caret-down"></i> Factura Electrónica</a>
+                                <ul class="sub-submenu">
+                                    <li class="active-item"><a href="#">Emitir Factura</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <div class="invoice-header">
+                <div class="invoice-header-row">
+                    <div class="invoice-label">Número de documento :</div>
+                    <div class="invoice-value" id="disp-ruc"></div>
+                </div>
+                <div class="invoice-header-row">
+                    <div class="invoice-label">Razón Social :</div>
+                    <div class="invoice-value" id="disp-razon"></div>
+                </div>
+                <div class="invoice-header-row">
+                    <div class="invoice-label">Establecimiento Emisor :</div>
+                    <div class="invoice-value grey-text">DOMICILIO FISCAL</div>
+                    <div><button class="btn-toolbar">Registrar</button></div>
+                </div>
+                <div class="invoice-header-row">
+                    <div class="invoice-label">Tipo Moneda :</div>
+                    <div class="invoice-value" id="disp-moneda">SOLES</div>
+                    <div style="margin-left:auto;">
+                        Fecha de Emisión : <select>
+                            <option>15/02/2026</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn-toolbar"><i class="fas fa-plus-circle" style="color:green;"></i> Adicionar</button>
+                <button class="btn-toolbar"><i class="fas fa-edit" style="color:#d4a017;"></i> Editar</button>
+                <button class="btn-toolbar"><i class="fas fa-minus-circle" style="color:red;"></i> Eliminar</button>
+            </div>
+
+            <div class="items-table-container">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Bien/Servicio</th>
+                            <th>Gravado/Exonerado/Inafecto</th>
+                            <th>Unidad Medida</th>
+                            <th>Cantidad</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Items will go here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="totals-section">
+                <div class="totals-table">
+                    <div class="totals-row">
+                        <div class="totals-label">Sub Total Ventas :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Anticipos :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Descuentos :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Valor de Venta :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">ISC :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">IGV :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">ICBPER :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Otros Cargos :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Otros Tributos :</div>
+                        <div class="totals-value">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label" style="font-weight:bold; color:black;">Monto de Redondeo :</div>
+                        <div class="totals-value" style="font-weight:bold; color:black;">S/ 0.00</div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label" style="font-weight:bold; color:black;">Importe Total :</div>
+                        <div class="totals-value" style="font-weight:bold; color:black;">S/ 0.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-cancelar" onclick="history.back()"><i class="fas fa-arrow-left"></i>
+                    Retroceder</button>
+                <button class="btn-continuar"><i class="fas fa-play-circle"></i> Continuar</button>
+                <button class="btn-cancelar"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple script to populate fields from URL params
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('disp-ruc').textContent = params.get('ruc') || '';
+            document.getElementById('disp-razon').textContent = params.get('razon') || '';
+            const moneda = params.get('moneda') || 'SOLES';
+            document.getElementById('disp-moneda').textContent = moneda;
+
+            // Adjust currency symbol in totals
+            const symbol = moneda === 'SOLES' ? 'S/' : (moneda.includes('DOLAR') ? '$' : '€');
+            document.querySelectorAll('.totals-value').forEach(el => {
+                el.textContent = symbol + ' 0.00';
+            });
+        });
+    </script>
+</body>
+
+</html>

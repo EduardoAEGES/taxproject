@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNAT - Sistema Integrado de Registros Electrónicos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Encabezado -->
+        <header class="main-header">
+            <div class="logo-area">
+                <a href="index.html"><img src="LOGO_CERTUS_SUNAT.png" alt="SUNAT Logo" class="logo"></a>
+            </div>
+            <div class="header-right">
+                <div class="top-links">
+                    <a href="#"><i class="fas fa-envelope"></i> Buzón Electrónico</a>
+                    <a href="#"><i class="fas fa-star"></i> Favoritos <i class="fas fa-caret-down"></i></a>
+                    <a href="#"><i class="fas fa-print"></i> Imprimir</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Barra de Usuario -->
+        <div class="user-bar">
+            <div class="date-display" id="clock">15/02/2026 18:27:00</div>
+            <div class="user-info">
+                <span>Bienvenido, I ALTAGRACIA PERU S.A.C. <i class="fas fa-caret-down"></i></span>
+                <span class="domicilio">Domicilio: Habido</span>
+                <button class="btn-salir">Salir</button>
+            </div>
+        </div>
+
+        <div class="main-body">
+            <!-- Barra Lateral -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <a href="index.html" class="home-link"><i class="fas fa-home"></i> Ir al inicio</a>
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="sidebar-title">
+                    SISTEMA INTEGRADO DE REGISTROS ELECTRONICOS
+                </div>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="has-submenu">
+                            <a href="#"><i class="fas fa-caret-right"></i> Registros Electrónicos</a>
+                        </li>
+                        <li class="has-submenu active-parent">
+                            <a href="#"><i class="fas fa-caret-down"></i> Registro de Ventas e Ingresos Electronico</a>
+                            <ul class="submenu">
+                                <li class="active-item"><a href="#">Gestión de Ventas e Ingresos Electrónicos</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="fas fa-caret-right"></i> Registro de Compras Electronico</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="fas fa-caret-right"></i> Generacion de Registros Electronicos</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="fas fa-caret-right"></i> Modulo de reportes</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="fas fa-caret-right"></i> Registros Electronicos</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Contenido -->
+            <main class="content-area">
+                <div class="page-header">
+                    <h1>Registro de Ventas e Ingresos Electronicos</h1>
+                </div>
+
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <label>Periodo:</label>
+                        <div class="custom-select-container">
+                            <div class="custom-select" id="periodo-select">
+                                <span>2026-No Presentado</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="dropdown-options" id="periodo-options">
+                                <div class="option-item">2026-No Presentado</div>
+                                <div class="option-item">2025-Presentado</div>
+                                <div class="option-item">2024-Presentado</div>
+                                <div class="option-item">2023-Presentado</div>
+                            </div>
+                        </div>
+
+                        <div class="custom-select-container">
+                            <div class="custom-select" id="mes-select">
+                                <span>ENE-No Presentado</span>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="dropdown-options" id="mes-options">
+                                <div class="option-item">ENE-No Presentado</div>
+                                <div class="option-item">FEB-Presentado</div>
+                                <div class="option-item">MAR-Presentado</div>
+                                <div class="option-item">ABR-Presentado</div>
+                                <div class="option-item">MAY-Presentado</div>
+                                <div class="option-item">JUN-Presentado</div>
+                                <div class="option-item">JUL-Presentado</div>
+                                <div class="option-item">AGO-Presentado</div>
+                                <div class="option-item">SEP-Presentado</div>
+                                <div class="option-item">OCT-Presentado</div>
+                                <div class="option-item">NOV-Presentado</div>
+                                <div class="option-item">DIC-Presentado</div>
+                            </div>
+                        </div>
+                        <button class="btn-aceptar">Aceptar</button>
+                    </div>
+                    <div class="contabilidad-label">
+                        Tipo de Contabilidad: Moneda Nacional (PEN)
+                    </div>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="main-tabs">
+                        <button class="tab-btn active">Generación de Registro</button>
+                        <button class="tab-btn">Información de Gestión</button>
+                    </div>
+
+                    <div class="sub-tabs-container">
+                        <div class="sub-tabs">
+                            <button class="sub-tab-btn">Resumen de CP</button>
+                            <button class="sub-tab-btn active">Propuesta del RVIE</button>
+                            <button class="sub-tab-btn">Preliminar del RVIE</button>
+                            <button class="sub-tab-btn">Inconsistencias</button>
+                            <button class="sub-tab-btn">Generación del RVIE</button>
+                            <button class="sub-tab-btn">Gestión de Ajustes Posteriores</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" style="border-top: none;">
+                        <div class="proposal-tabs">
+                            <button class="proposal-tab active">Incluidos</button>
+                            <button class="proposal-tab">No Incluidos</button>
+                        </div>
+
+                        <div class="content-header-blue">
+                            <h2>Propuesta de RVIE</h2>
+                        </div>
+
+                        <div class="search-form-container">
+                            <div class="search-title">Buscar por</div>
+
+                            <div class="form-grid">
+                                <!-- Fila 1 -->
+                                <div class="form-group">
+                                    <label>Montos</label>
+                                    <div class="range-inputs">
+                                        <input type="text" placeholder="Desde">
+                                        <input type="text" placeholder="Hasta">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Fecha del documento</label>
+                                    <div class="range-inputs">
+                                        <div class="input-icon-wrapper">
+                                            <input type="text" placeholder="Desde">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </div>
+                                        <div class="input-icon-wrapper">
+                                            <input type="text" placeholder="Hasta">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Fila 2 -->
+                                <div class="form-group">
+                                    <label>RUC del adquiriente</label>
+                                    <input type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>CAR SUNAT (0/27)</label>
+                                    <input type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo de documento</label>
+                                    <select>
+                                        <option>Seleccionar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Inconsistencias</label>
+                                    <select>
+                                        <option>Seleccionar</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn-search"><i class="fas fa-search"></i> Buscar</button>
+                                <button class="btn-clear"><i class="fas fa-sync-alt"></i> Limpiar</button>
+                            </div>
+                        </div>
+
+                        <!-- New Results Section -->
+                        <div class="results-container">
+                            <div class="table-controls-top">
+                                <div class="show-rows">
+                                    Mostrar:
+                                    <select>
+                                        <option>20</option>
+                                    </select>
+                                    registros
+                                </div>
+                                <button class="btn-exportar"><i class="fas fa-download"></i> Exportar <i
+                                        class="fas fa-caret-down"></i></button>
+                            </div>
+
+                            <div class="table-responsive results-table-wrapper">
+                                <table class="results-table">
+                                    <thead>
+                                        <!-- Group Headers -->
+                                        <tr>
+                                            <th colspan="9" class="group-header">Datos del CP</th>
+                                            <th colspan="3" class="group-header">Datos del Adquiriente</th>
+                                            <th colspan="9" class="group-header">Montos y Tasas</th>
+                                            <!-- Simplified Title -->
+                                            <th colspan="6" class="group-header">Totales y Moneda</th>
+                                            <th colspan="5" class="group-header">Referencias</th>
+                                            <th colspan="10" class="group-header">Otros</th>
+                                        </tr>
+                                        <!-- Main Columns -->
+                                        <tr>
+                                            <th><input type="checkbox"></th>
+                                            <th>Inc.</th>
+                                            <th>Des. Per.</th>
+                                            <th>Fecha de emisión</th>
+                                            <th>Fecha Vcto/Pago</th>
+                                            <th>Tipo CP/Doc.</th>
+                                            <th>Serie del CDP</th>
+                                            <th>Nro CP o Doc. Nro Inicial (Rango)</th>
+                                            <th>Nro Final (Rango)</th>
+
+                                            <!-- Adquiriente -->
+                                            <th>Tipo Doc Identidad</th>
+                                            <th>Nro Doc Identidad</th>
+                                            <th>Apellidos Nombres/ Razón Social</th>
+
+                                            <!-- Montos -->
+                                            <th>Valor Facturado Exportación</th>
+                                            <th>BI Gravada</th>
+                                            <th>Dscto BI</th>
+                                            <th>IGV / IPM</th>
+                                            <th>Dscto IGV / IPM</th>
+                                            <th>Mto Exonerado</th>
+                                            <th>Mto Inafecto</th>
+                                            <th>ISC</th>
+                                            <th>BI Grav IVAP</th>
+
+                                            <!-- Totales/Moneda -->
+                                            <th>IVAP</th>
+                                            <th>ICBPER</th>
+                                            <th>Otros Tributos</th>
+                                            <th>Total CP</th>
+                                            <th>Moneda</th>
+                                            <th>Tipo Cambio</th>
+
+                                            <!-- Referencias -->
+                                            <th>Comp.</th>
+                                            <th>Fecha Emisión Doc Modificado</th>
+                                            <th>Tipo CP Modificado</th>
+                                            <th>Serie CP Modificado</th>
+                                            <th>Nro CP Modificado</th>
+
+                                            <!-- Otros -->
+                                            <th>ID Proyecto Operadores Atribución</th>
+                                            <th>Tipo de Nota</th>
+                                            <th>Est. Comp</th>
+                                            <th>Desc. Comp</th>
+                                            <th>Valor FOB Embarcado</th>
+                                            <th>Valor OP Gratuitas</th>
+                                            <th>Tipo Operación</th>
+                                            <th>DAM / CP</th>
+                                            <th>CLU</th>
+                                            <th>CAR SUNAT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td></td>
+                                            <td><i class="fas fa-sync-alt"></i></td>
+                                            <td>02/01/2026</td>
+                                            <td>02/01/2026</td>
+                                            <td>01</td>
+                                            <td>F003</td>
+                                            <td>23860</td>
+                                            <td></td>
+
+                                            <!-- Adquiriente -->
+                                            <td>6</td>
+                                            <td>20610352341</td>
+                                            <td>MARIA TRANSPOR S.R.L.</td>
+
+                                            <!-- Montos -->
+                                            <td>0.00</td>
+                                            <td>20.25</td>
+                                            <td>0.00</td>
+                                            <td>3.65</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+
+                                            <!-- Totales -->
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>23.90</td>
+                                            <td>PEN</td>
+                                            <td>1.000</td>
+
+                                            <!-- Refs -->
+                                            <td><i class="far fa-edit"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <!-- Otros -->
+                                            <td></td>
+                                            <td></td>
+                                            <td>1</td>
+                                            <td>ACTIVO</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0101</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>2043482246801F00300...</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td></td>
+                                            <td><i class="fas fa-sync-alt"></i></td>
+                                            <td>02/01/2026</td>
+                                            <td>02/01/2026</td>
+                                            <td>01</td>
+                                            <td>F004</td>
+                                            <td>28677</td>
+                                            <td></td>
+
+                                            <td>6</td>
+                                            <td>20614344491</td>
+                                            <td>CONSORCIO GRAU</td>
+
+                                            <td>0.00</td>
+                                            <td>2,798.73</td>
+                                            <td>0.00</td>
+                                            <td>503.77</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>3,302.50</td>
+                                            <td>PEN</td>
+                                            <td>1.000</td>
+
+                                            <td><i class="far fa-edit"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td>1</td>
+                                            <td>ACTIVO</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0101</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>2043482246801F0040...</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td></td>
+                                            <td><i class="fas fa-sync-alt"></i></td>
+                                            <td>02/01/2026</td>
+                                            <td>02/01/2026</td>
+                                            <td>01</td>
+                                            <td>F003</td>
+                                            <td>23861</td>
+                                            <td></td>
+
+                                            <td>6</td>
+                                            <td>20412942052</td>
+                                            <td>CONTROL TOTAL S.A.C.</td>
+
+                                            <td>0.00</td>
+                                            <td>23.30</td>
+                                            <td>0.00</td>
+                                            <td>4.20</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>27.50</td>
+                                            <td>PEN</td>
+                                            <td>1.000</td>
+
+                                            <td><i class="far fa-edit"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td>1</td>
+                                            <td>ACTIVO</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0101</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>2043482246801F0030...</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td></td>
+                                            <td><i class="fas fa-sync-alt"></i></td>
+                                            <td>02/01/2026</td>
+                                            <td>02/01/2026</td>
+                                            <td>01</td>
+                                            <td>F003</td>
+                                            <td>23862</td>
+                                            <td></td>
+
+                                            <td>6</td>
+                                            <td>20498371273</td>
+                                            <td>CONTROL ELECTRICO DE ENERGIA E.I.R.L</td>
+
+                                            <td>0.00</td>
+                                            <td>255.09</td>
+                                            <td>0.00</td>
+                                            <td>45.91</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>301.00</td>
+                                            <td>PEN</td>
+                                            <td>1.000</td>
+
+                                            <td><i class="far fa-edit"></i></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td></td>
+                                            <td>1</td>
+                                            <td>ACTIVO</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>0101</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>2043482246801F0030...</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="totals-row">
+                                            <td colspan="13" class="total-label-text">TOTALES</td>
+                                            <!-- Spans Checkbox to Adquiriente Name -->
+
+                                            <!-- Totals Columns (match Montos columns) -->
+                                            <td id="total-val-exp">0.00</td>
+                                            <td id="total-bi-grav">0.00</td>
+                                            <td id="total-dscto-bi">0.00</td>
+                                            <td id="total-igv">0.00</td>
+                                            <td id="total-dscto-igv">0.00</td>
+                                            <td id="total-mto-exo">0.00</td>
+                                            <td id="total-mto-ina">0.00</td>
+                                            <td id="total-isc">0.00</td>
+                                            <td id="total-bi-ivap">0.00</td>
+
+                                            <!-- Totals Columns (match Totales columns) -->
+                                            <td id="total-ivap">0.00</td>
+                                            <td id="total-icbper">0.00</td>
+                                            <td id="total-otros">0.00</td>
+                                            <td id="total-total-cp" class="strong">0.00</td>
+
+                                            <td colspan="16"></td> <!-- Spans remaining columns -->
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="pagination-area">
+                                <div class="pagination-info">Mostrando del 1 al 20 de un total 866 registros</div>
+                                <div class="pagination-controls">
+                                    <button disabled><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button class="active">1</button>
+                                    <button>Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons-row">
+                                <button class="btn-action btn-blue"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                <button class="btn-action btn-blue-light"><i class="fas fa-pen"></i> Editar</button>
+                                <button class="btn-action btn-blue-light"><i class="fas fa-trash-alt"></i>
+                                    Eliminar</button>
+
+                                <div class="spacer"></div>
+
+                                <button class="btn-action btn-blue-light">Comparar documentos</button>
+                                <button class="btn-action btn-dark-blue"><i class="fas fa-file-upload"></i> Importación
+                                    de CP</button>
+                                <button class="btn-action btn-dark-blue"><i class="fas fa-file-upload"></i> Carga masiva
+                                    de complemento</button>
+                                <button class="btn-action btn-dark-blue"><i class="fas fa-sync"></i> Actualizar
+                                    CP</button>
+                                <button class="btn-action btn-green"><i class="fas fa-check"></i> Aceptar
+                                    Propuesta</button>
+                                <button class="btn-action btn-red"><i class="fas fa-times"></i> Reemplazar
+                                    Propuesta</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

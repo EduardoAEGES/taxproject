@@ -1,0 +1,287 @@
+/* Comprobantes Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 13px;
+}
+
+/* Header (Shared with Menu SOL but tweaked) */
+.sol-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.user-actions a {
+    color: #cc0000;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+.user-bar-blue {
+    background-color: #0072bc;
+    color: #fff;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.user-info-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-salir {
+    background-color: #00a0a0;
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+/* Layout */
+.main-layout {
+    display: flex;
+    min-height: calc(100vh - 85px);
+}
+
+/* Sidebar */
+.left-sidebar {
+    width: 240px;
+    background-color: #f2f2f2;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #cc0000;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.home-link {
+    color: #cc0000;
+    text-decoration: none;
+}
+
+.menu-title {
+    color: #005aa7;
+    padding: 10px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-items li {
+    padding: 5px 10px;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 2px 0;
+}
+
+.menu-items i {
+    width: 15px;
+    text-align: center;
+    color: #555;
+    font-size: 10px;
+}
+
+.submenu,
+.sub-submenu {
+    list-style: none;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+
+.active-item>a {
+    background-color: #dbe8f3;
+    color: #005aa7;
+    font-weight: bold;
+}
+
+/* Content Area */
+.content-area {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.form-container {
+    border: 1px solid #7facce;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-row {
+    display: flex;
+    border-bottom: 2px solid #fff;
+    /* Thicker white separator */
+    margin-bottom: 0;
+}
+
+.label-col {
+    background-color: #ccdbe8;
+    /* Slightly darker blue/gray as in image */
+    width: 45%;
+    padding: 6px 10px;
+    color: #003366;
+    font-weight: bold;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* To place colon on right */
+    position: relative;
+}
+
+/* Simulate the colon column visual */
+.label-col::after {
+    content: ":";
+    position: absolute;
+    right: 5px;
+    color: #003366;
+    font-weight: bold;
+}
+
+.input-col {
+    background-color: #ebf4fc;
+    /* Very light blue */
+    width: 55%;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.empty-row .label-col {
+    background: none;
+}
+
+.empty-row .label-col::after {
+    content: "";
+}
+
+/* No colon for empty row */
+.empty-row .input-col.grey-box {
+    background-color: #e4e4e4;
+    height: 18px;
+    width: 95%;
+    border: 1px solid #ccc;
+}
+
+.input-text {
+    width: 120px;
+    padding: 2px;
+    border: 1px solid #7f9db9;
+}
+
+.input-select {
+    padding: 2px;
+    border: 1px solid #7f9db9;
+    width: 200px;
+}
+
+/* Radio Buttons */
+input[type="radio"] {
+    margin: 0 4px 0 0;
+    vertical-align: middle;
+}
+
+label {
+    cursor: pointer;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+/* Actions */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-top: none;
+}
+
+.btn-continuar {
+    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    border: 1px solid #999;
+    padding: 4px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-continuar i {
+    color: #0066cc;
+    /* Blue play icon */
+    background: #e6f2ff;
+    border-radius: 50%;
+    padding: 2px;
+    border: 1px solid #b3d1ff;
+    font-size: 10px;
+}
+
+.btn-cancelar {
+    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    border: 1px solid #999;
+    padding: 4px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #cc0000;
+    /* Red text */
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancelar i {
+    color: #cc0000;
+    font-size: 12px;
+}

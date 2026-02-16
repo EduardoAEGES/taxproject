@@ -1,0 +1,158 @@
+/* Dashboard Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    background-color: #fff;
+    padding: 15px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    height: 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Grid Layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Card Styling */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Soft shadow like reference */
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-container {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #fff;
+}
+
+/* Gradients for visual variety (simulating the images) */
+.gradient-blue {
+    background: linear-gradient(135deg, #005aa7 0%, #fffde4 100%);
+    background-color: #003366;
+}
+
+/* Navy base */
+.gradient-green {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.gradient-orange {
+    background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+}
+
+.gradient-dark-blue {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+.gradient-purple {
+    background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+}
+
+.gradient-teal {
+    background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+}
+
+.gradient-red {
+    background: linear-gradient(135deg, #cb2d3e 0%, #ef473a 100%);
+}
+
+.gradient-cyan {
+    background: linear-gradient(135deg, #4ac29a 0%, #bdfff3 100%);
+}
+
+.gradient-gold {
+    background: linear-gradient(135deg, #cac531 0%, #f3f9a7 100%);
+}
+
+.gradient-gray {
+    background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+
+/* Overrides for better "corporate" look match */
+.gradient-blue {
+    background: #003366 url('LOGO_CERTUS_SUNAT.png') no-repeat center/contain;
+    background-size: 80%;
+    background-blend-mode: overlay;
+}
+
+/* Placeholder Icons if images fail */
+.card-icon {
+    font-size: 60px;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+}
+
+.btn-simulator {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    border: 1px solid #003366;
+    border-radius: 20px;
+    /* Rounded pill shape */
+    background-color: transparent;
+    color: #003366;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-simulator:hover {
+    background-color: #003366;
+    color: #fff;
+}

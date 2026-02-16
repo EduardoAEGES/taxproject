@@ -89,13 +89,18 @@ ul {
 
 .btn-salir {
     background-color: #00a0a0;
-    /* Color verde azulado */
     color: white;
     border: none;
     padding: 5px 15px;
     border-radius: 3px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
+    /* Added for link */
+    display: inline-block;
+    /* Added for link */
+    font-size: 12px;
+    /* Ensure size consistency */
 }
 
 /* Diseño */

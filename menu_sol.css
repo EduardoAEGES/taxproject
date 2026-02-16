@@ -56,13 +56,14 @@ body {
 
 .btn-salir {
     background-color: #00a0a0;
-    /* Teal/Cyan button */
     color: white;
     border: none;
     padding: 4px 15px;
     border-radius: 3px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
 }
 
 /* Layout */
@@ -179,5 +180,6 @@ body {
 }
 
 .highlight-link {
-    font-weight: bold;
+    font-weight: normal;
+    /* Removed bold as requested */
 }

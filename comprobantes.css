@@ -58,6 +58,91 @@ body {
     cursor: pointer;
     font-weight: bold;
     font-size: 11px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#razon-social-display {
+    font-size: 11px;
+    margin-top: 4px;
+    min-height: 20px;
+    height: auto;
+    /* Adapts to content height */
+    margin-left: 20px;
+    max-width: 90%;
+    white-space: normal;
+    /* Allow text wrapping */
+    word-wrap: break-word;
+    /* Break long words if needed */
+    padding-bottom: 2px;
+    /* Add breathing room */
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .left-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .sidebar-menu {
+        display: none;
+    }
+
+    .left-sidebar:hover .sidebar-menu {
+        display: block;
+    }
+
+    .form-row {
+        flex-direction: column;
+        height: auto;
+        /* Allow row to grow */
+    }
+
+    .label-col {
+        width: 100%;
+        border-bottom: 1px solid #fff;
+        height: auto;
+        /* Allow label to grow */
+    }
+
+    .input-col {
+        width: 100%;
+        height: auto;
+        /* Allow input area to grow */
+        flex-wrap: wrap;
+        padding: 10px;
+        /* More padding on mobile */
+    }
+
+    #razon-social-display {
+        margin-left: 0;
+        width: 100%;
+        /* Full width results on mobile */
+        margin-top: 10px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-bar-blue {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+        height: auto;
+    }
+
+    .user-info-right {
+        flex-direction: column;
+        gap: 5px;
+    }
 }
 
 /* Layout */
@@ -100,91 +185,111 @@ body {
 .menu-items {
     list-style: none;
     padding: 0;
-    margin: 0;
+    padding: 10px 0;
 }
 
 .menu-items li {
-    padding: 5px 10px;
+    list-style: none;
 }
 
 .menu-items a {
+    display: block;
+    padding: 8px 15px;
     text-decoration: none;
     color: #333;
-    display: block;
-    padding: 2px 0;
+    font-size: 12px;
+    /* font-weight: bold;  <-- REMOVED DEFAULT BOLD */
+    display: flex;
+    align-items: center;
 }
 
-.menu-items i {
+.menu-items a i {
+    margin-right: 8px;
     width: 15px;
     text-align: center;
-    color: #555;
-    font-size: 10px;
+    color: #666;
 }
 
-.submenu,
+.menu-items>li>a {
+    color: #003366;
+}
+
+/* Active/Open Menu Item - Keep Bold Only Here */
+.active-parent>a {
+    font-weight: bold;
+    background-color: #e9e9e9;
+}
+
+.submenu {
+    background-color: #fff;
+    display: none;
+    /* Hidden by default */
+}
+
+.active-parent .submenu {
+    display: block;
+    /* Show when active */
+}
+
+.submenu a {
+    padding-left: 35px;
+    color: #333;
+}
+
 .sub-submenu {
-    list-style: none;
-    padding-left: 15px;
-    margin-top: 5px;
+    padding-left: 20px;
 }
 
 .active-item>a {
-    background-color: #dbe8f3;
-    color: #005aa7;
     font-weight: bold;
+    color: #005691;
+    background-color: #e6f2ff;
 }
 
 /* Content Area */
 .content-area {
     flex-grow: 1;
     padding: 20px;
+    background-color: #fff;
 }
 
 .form-container {
-    border: 1px solid #7facce;
-    border-radius: 5px;
+    border: 1px solid #a6c9e2;
     padding: 5px;
+    background-color: #eef6fb;
+    border-radius: 4px;
 }
 
 .form-row {
     display: flex;
-    border-bottom: 2px solid #fff;
-    /* Thicker white separator */
-    margin-bottom: 0;
+    margin-bottom: 2px;
+    background-color: #e3f0f9;
+    border-bottom: 1px solid #fff;
 }
 
 .label-col {
-    background-color: #ccdbe8;
-    /* Slightly darker blue/gray as in image */
-    width: 45%;
-    padding: 6px 10px;
-    color: #003366;
+    width: 40%;
+    /* Changed from fixed 400px to percentage for responsiveness */
+    min-width: 250px;
+    /* Prevent it from getting too small */
+    background-color: #dbeaf6;
+    padding: 8px;
     font-weight: bold;
-    font-size: 11px;
+    color: #004080;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    /* To place colon on right */
-    position: relative;
-}
-
-/* Simulate the colon column visual */
-.label-col::after {
-    content: ":";
-    position: absolute;
-    right: 5px;
-    color: #003366;
-    font-weight: bold;
 }
 
 .input-col {
-    background-color: #ebf4fc;
-    /* Very light blue */
-    width: 55%;
-    padding: 6px 10px;
+    width: 60%;
+    /* Fill remaining space */
+    padding: 8px;
+    background-color: #eef6fb;
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
+    /* Allow wrapping if needed */
 }
 
 .empty-row .label-col {
@@ -204,15 +309,17 @@ body {
 }
 
 .input-text {
-    width: 120px;
-    padding: 2px;
     border: 1px solid #7f9db9;
+    padding: 3px;
+    width: 150px;
 }
 
 .input-select {
-    padding: 2px;
     border: 1px solid #7f9db9;
-    width: 200px;
+    padding: 2px;
+    width: 100%;
+    max-width: 300px;
+    /* Prevent massive selects */
 }
 
 /* Radio Buttons */
@@ -229,48 +336,32 @@ label {
     color: #000;
 }
 
-/* Actions */
+/* Form Actions */
 .form-actions {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 15px;
-    padding: 10px;
-    background-color: #fff;
-    border-top: none;
 }
 
 .btn-continuar {
-    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    background: linear-gradient(to bottom, #fcfcfc, #e9e9e9);
     border: 1px solid #999;
-    padding: 4px 15px;
-    border-radius: 4px;
+    padding: 5px 15px;
+    border-radius: 3px;
     cursor: pointer;
-    color: #333;
     font-weight: bold;
-    font-size: 12px;
+    color: #000;
     display: flex;
     align-items: center;
     gap: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-continuar i {
     color: #0066cc;
-    /* Blue play icon */
-    background: #e6f2ff;
-    border-radius: 50%;
-    padding: 2px;
-    border: 1px solid #b3d1ff;
-    font-size: 10px;
 }
 
 .btn-cancelar {
-    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
-    border: 1px solid #999;
-    padding: 4px 15px;
-    border-radius: 4px;
-    cursor: pointer;
     color: #cc0000;
     /* Red text */
     font-weight: bold;

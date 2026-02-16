@@ -39,29 +39,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 razonSocialDisplay.style.display = 'flex';
                 razonSocialDisplay.style.alignItems = 'center';
 
-                // 1. Try fetching from OUR LOCAL BACKEND (server.py)
-                // This avoids CORS and does the real scraping
+                // STRATEGY: Cascade Lookup
+                // 1. Try Local Backend (Best for local dev)
+                // 2. If fail, Try Direct Public API (Might work if CORS allows)
+                // 3. If fail, Use Local Database (Guaranteed fallback)
+
                 fetch(`http://localhost:5000/consultar-ruc?ruc=${currentRuc}`)
                     .then(response => {
-                        if (!response.ok) throw new Error('Network response was not ok');
+                        if (!response.ok) throw new Error('Backend unresponsive');
                         return response.json();
                     })
                     .then(data => {
                         if (data && data.nombre) {
                             displayResult(data.nombre);
                         } else {
-                            throw new Error('API returned no name');
+                            throw new Error('Backend returned no name');
                         }
                     })
-                    .catch(error => {
-                        console.log('Backend fallback to local mock:', error);
-                        // 2. Fallback to local mock if backend is down
-                        if (rucDatabase[currentRuc]) {
-                            displayResult(rucDatabase[currentRuc]);
-                        } else {
-                            // 3. Fallback for unknown RUCs
-                            displayResult('CONTRIBUYENTE GENERICO (Backend Falló)');
-                        }
+                    .catch(backendError => {
+                        console.log('Backend failed, trying direct API...', backendError);
+
+                        // 2. Direct API Attempt
+                        fetch(`https://api.apis.net.pe/v1/ruc?numero=${currentRuc}`)
+                            .then(response => {
+                                if (!response.ok) throw new Error('Direct API unavailable');
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data && data.nombre) {
+                                    displayResult((data.nombre));
+                                } else {
+                                    throw new Error('Direct API no data');
+                                }
+                            })
+                            .catch(apiError => {
+                                console.log('Direct API failed, using Mock DB...', apiError);
+
+                                // 3. Local Mock Database Fallback
+                                if (rucDatabase[currentRuc]) {
+                                    displayResult(rucDatabase[currentRuc]);
+                                } else {
+                                    displayResult('CONTRIBUYENTE GENERICO (Modo Demo)');
+                                }
+                            });
                     });
             }
         });

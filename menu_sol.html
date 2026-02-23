@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="menu_sol.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
 </head>
 
 <body>
@@ -71,10 +73,45 @@
                         <li><a href="#"><i class="fas fa-caret-right"></i> Propuesta información para declaración
                                 jurada</a></li>
                         <li><a href="comprobantes.html"><i class="fas fa-caret-right"></i> Comprobantes de pago</a></li>
-                        <li>
-                            <a href="rvie.html" class="highlight-link">
+                        <li class="has-submenu">
+                            <a href="#" class="highlight-link submenu-toggle">
                                 <i class="fas fa-caret-right"></i> Sistema Integrado de Registros Electrónicos
                             </a>
+                            <ul class="nested-menu">
+                                <li class="has-submenu-level2">
+                                    <a href="#" class="submenu-toggle-level2">
+                                        <i class="fas fa-caret-right"></i> Registros Electronicos
+                                    </a>
+                                    <ul class="nested-menu-level2">
+                                        <li class="has-submenu-level3">
+                                            <a href="#" class="submenu-toggle-level3">
+                                                <i class="fas fa-caret-right"></i> Registro de Ventas e Ingresos
+                                                Electronico
+                                            </a>
+                                            <ul class="nested-menu-level3">
+                                                <li><a href="rvie.html">Gestión de Ventas e Ingresos Electrónicos</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="has-submenu-level3">
+                                            <a href="#" class="submenu-toggle-level3">
+                                                <i class="fas fa-caret-right"></i> Registro de Compras Electronico
+                                            </a>
+                                            <ul class="nested-menu-level3">
+                                                <li><a href="#">Gestión de Compras</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="has-submenu-level3">
+                                            <a href="#" class="submenu-toggle-level3">
+                                                <i class="fas fa-caret-right"></i> Generacion de Registros Electronicos
+                                            </a>
+                                            <ul class="nested-menu-level3">
+                                                <li><a href="#">Generación de Registros Electrónicos</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
                         <li><a href="#"><i class="fas fa-caret-right"></i> Sistema de Libros y Registros
                                 Electrónicos</a></li>
@@ -120,6 +157,28 @@
         }
         setInterval(updateTime, 1000);
         updateTime();
+
+        // Submenu Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggles = document.querySelectorAll('.submenu-toggle, .submenu-toggle-level2, .submenu-toggle-level3');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const parentLi = toggle.parentElement;
+                    parentLi.classList.toggle('open');
+
+                    // Rotate the icon
+                    const icon = toggle.querySelector('i');
+                    if (parentLi.classList.contains('open')) {
+                        icon.classList.remove('fa-caret-right');
+                        icon.classList.add('fa-caret-down');
+                    } else {
+                        icon.classList.remove('fa-caret-down');
+                        icon.classList.add('fa-caret-right');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 

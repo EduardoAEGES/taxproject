@@ -19,14 +19,15 @@ if (typeof window.supabase !== 'undefined' && SUPABASE_URL !== 'URL_DE_SUPABASE'
  * Asume una tabla pública en Supabase llamada 'usuarios' con columnas: ruc, usuario, clave
  */
 async function loginConSupabase(ruc, usuario, clave) {
-    // Si no hay cliente de Supabase (por falta de credenciales), 
-    // retornar éxito solo si el usuario ingresa datos de prueba por defecto.
+    // Si el usuario ingresa datos de prueba por defecto, acceder directamente.
+    if ((ruc === '20123456789' || ruc === '201234569789') && usuario === 'ADMIN' && clave === '123') {
+        sessionStorage.setItem('sunat_auth', JSON.stringify({ ruc, usuario, denominacion: 'EMPRESA EJEMPLO S.A.C.' }));
+        return true;
+    }
+
+    // Si no hay cliente de Supabase (por falta de credenciales)
     if (!supabaseClient) {
-        console.warn("Supabase no está configurado. Usando autenticación de prueba.");
-        if (ruc === '20123456789' && usuario === 'ADMIN' && clave === '123') {
-            sessionStorage.setItem('sunat_auth', JSON.stringify({ ruc, usuario }));
-            return true;
-        }
+        console.warn("Supabase no está configurado.");
         return false;
     }
 

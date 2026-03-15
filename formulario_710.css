@@ -1,0 +1,760 @@
+/* Reset base just in case, though renta_anual_landing should handle most */
+
+.form-area {
+    padding: 20px 40px;
+    background-color: #f7f9fc;
+}
+
+/* Tabs */
+.form-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.form-tab-btn {
+    padding: 10px 30px;
+    background-color: #eee;
+    color: #666;
+    font-size: 14px;
+    position: relative;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%);
+    margin-right: -15px; /* overlap */
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}
+
+.form-tab-btn:first-child {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+
+.form-tab-btn.active {
+    background-color: #0084aa; /* SUNAT Teal-blue */
+    color: white;
+    z-index: 2;
+}
+
+/* Step Indicaiton */
+.step-indication {
+    background-color: #f1f1f1;
+    padding: 15px;
+    font-size: 13px;
+    border-left: 4px solid #fff; /* spacing visually */
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-restore {
+    background-color: #17658f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Form Card */
+.form-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.form-card-header {
+    background-color: #a3a3a3; /* Grey header */
+    color: white;
+    padding: 12px 20px;
+}
+
+.form-card-header h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-help {
+    color: #eee;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-card-body {
+    padding: 30px;
+}
+
+.form-instruction {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 150px;
+}
+
+.form-row label {
+    font-size: 14px;
+    color: #333;
+}
+
+.sunat-select {
+    padding: 8px;
+    border: 1px solid #7cb3f2;
+    border-radius: 3px;
+    width: 300px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.sunat-select:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
+}
+
+/* Secondary Views */
+.seccion-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    background-color: #f1f1f1;
+}
+
+.seccion-tab {
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    border-right: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.seccion-tab.active {
+    background-color: #fff;
+    color: #333;
+}
+
+.seccion-tab.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Main Tabs (Informativa / Determinativa) */
+.form-tabs-container {
+    background-color: #f7f9fc;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 0;
+}
+
+.main-form-tabs {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.main-tab {
+    padding: 12px 30px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    background-color: #eee;
+    margin-right: 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    transition: all 0.2s;
+}
+
+.main-tab:hover {
+    background-color: #e5e5e5;
+}
+
+.main-tab.active {
+    background-color: #fff;
+    color: #0084ff;
+    font-weight: bold;
+    border-top: 3px solid #0084ff;
+    position: relative;
+}
+
+.main-tab-content {
+    background-color: #fff;
+    padding: 20px;
+    min-height: 400px;
+}
+
+.form-body-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-top: none;
+    background-color: #fff;
+}
+
+.sub-seccion-tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.sub-seccion-tab {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+}
+
+.sub-seccion-tab.active {
+    color: #333;
+    font-weight: bold;
+    border-bottom: 3px solid #0084ff;
+}
+
+.sub-seccion-tab.disabled {
+    color: #bbb;
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
+
+.form-body-content {
+    padding: 25px;
+}
+
+.form-grid-row {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.form-label-col {
+    width: 250px;
+    font-size: 13px;
+    color: #333;
+}
+
+.form-input-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.subsection-title {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+/* Group Boxes like Exoneracion */
+.form-group-box {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: #fbfbfb; /* slight grey bg for inside groups? no, seems whiteish but lets keep subtle */
+}
+
+.group-box-title {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: white; /* Important so the line doesn't go through text */
+    padding: 0 10px;
+    font-size: 14px;
+    color: #0084ff; /* Based on image colors for blue headers inside forms */
+    font-weight: normal;
+}
+
+/* Inputs within rows */
+.row-input {
+    flex-direction: row;
+    align-items: center;
+}
+
+.field-number {
+    display: inline-block;
+    background-color: #eaeaea;
+    color: #555;
+    padding: 6px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.sunat-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    outline: none;
+    flex-grow: 1;
+}
+
+.date-input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.date-input {
+    width: 120px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.calendar-btn {
+    padding: 8px 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-left: 1px solid #ddd;
+    color: #555;
+    cursor: pointer;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+
+
+
+/* MODALS */
+.sunat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.sunat-modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sunat-modal {
+    background-color: #fff;
+    width: 500px;
+    max-width: 90%;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sunat-modal-header {
+    background-color: #0066cc;
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.sunat-modal-body {
+    padding: 25px 30px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.sunat-modal-footer {
+    padding: 15px 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* right align by default */
+}
+
+.sunat-modal-footer.dual-btn {
+    justify-content: flex-end;
+}
+
+.sunat-modal-footer.single-btn {
+    justify-content: flex-end;
+}
+
+.sunat-btn-primary {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sunat-btn-primary:hover {
+    background-color: #0052a3;
+}
+
+.blue-btn-border {
+    border: 2px solid #5ab0ff;
+}
+
+.form-footer-actions {
+    display: flex;
+    justify-content: center; /* Centered as requested */
+    margin-top: 40px;
+    padding: 20px 0;
+    gap: 15px;
+}
+
+.form-footer-actions.centered {
+    justify-content: center;
+}
+
+.sunat-btn-outline {
+    background-color: #fff;
+    color: #0066cc;
+    border: 1px solid #0066cc;
+    padding: 8px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sunat-btn-outline:hover {
+    background-color: #f0f7ff;
+}
+
+/* Información Complementaria Tab Styles */
+.info-complementaria-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.info-comp-tab {
+    font-size: 13px;
+    padding: 8px 12px;
+    color: #005aa3;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.info-comp-tab.active {
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+    position: relative;
+    top: 1px;
+}
+
+.info-comp-tab:hover {
+    text-decoration: underline;
+}
+
+/* Two column grid for complementaria info */
+.complementaria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.complementaria-group {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.complementaria-group-title {
+    font-size: 14px;
+    color: #0084ff;
+    margin-bottom: 20px;
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.form-row-comp {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-row-comp label {
+    font-size: 12px;
+    color: #666;
+}
+
+.input-with-number {
+    display: flex;
+    align-items: center;
+}
+
+.field-number-small {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    font-size: 11px;
+    min-width: 35px;
+    text-align: center;
+    margin-right: -1px;
+}
+
+.sunat-select-small, .sunat-input-small {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.sunat-input-small.full-width {
+    width: 100%;
+}
+
+.sunat-input-small:disabled {
+    background-color: #f5f5f5;
+    color: #888;
+}
+
+/* SECCION DETERMINATIVA STYLES */
+.deterministic-tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.det-tab {
+    padding: 10px 15px;
+    font-size: 13px;
+    color: #005aa3;
+    cursor: pointer;
+    border-right: 1px solid #ddd;
+}
+
+.det-tab:last-child {
+    border-right: none;
+}
+
+.det-tab.active {
+    background-color: #fff;
+    font-weight: bold;
+    color: #333;
+}
+
+.eeff-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.eeff-sub-tabs {
+    display: flex;
+    gap: 15px;
+}
+
+.eeff-tab {
+    font-size: 13px;
+    color: #0084ff;
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.eeff-tab.active {
+    color: #333;
+    border-bottom: 2px solid #0084ff;
+    font-weight: bold;
+}
+
+.det-form-container {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.det-instruction {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.financial-table-header {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}
+
+.financial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+}
+
+.financial-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fin-label {
+    font-size: 12px;
+    color: #444;
+    width: 60%;
+    line-height: 1.4;
+}
+
+.fin-input-cell {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: flex-end;
+}
+
+.fin-value-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 2px 8px;
+    min-width: 140px;
+    margin-left: 5px;
+    position: relative;
+    height: 30px;
+}
+
+.fin-input {
+    border: none;
+    outline: none;
+    font-size: 12px;
+    text-align: right;
+    width: 100%;
+    color: #333;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 0 8px;
+    z-index: 2;
+    background: transparent;
+}
+
+.fin-input:focus {
+    opacity: 1;
+    background-color: #fff;
+}
+
+.fin-display {
+    font-size: 12px;
+    color: #333;
+    width: 100%;
+    text-align: right;
+    z-index: 1;
+}
+
+
+
+.currency-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    flex-grow: 1;
+    text-align: right;
+}
+
+.sunat-btn-secondary {
+    background-color: #005aa3;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.sunat-btn-secondary:hover {
+    background-color: #004a85;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.total-box {
+    background-color: #e8f4fd;
+    border: 1px solid #5ab0ff;
+    font-weight: bold;
+    color: #333;
+    justify-content: flex-end;
+    min-width: 140px;
+}
+
+.total-calc-row {
+    border-top: 2px solid #333 !important;
+    margin-top: 10px;
+    padding-top: 10px !important;
+}
+
+.total-calc-row .fin-label {
+    font-weight: bold;
+    color: #000;
+}
+
+.highlight-green-cell {
+    background-color: #d8e6c1 !important;
+}
+
+.highlight-blue-cell {
+    background-color: #e8f4fd !important;
+}
+
+
+
+

@@ -1,0 +1,224 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Header 1 : Logo Area */
+.header-logo {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.sunat-img {
+    height: 35px;
+    width: auto;
+}
+
+/* Header 2 : Blue User Bar */
+.header-blue {
+    background-color: #005aa3;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.header-blue-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+}
+
+.dropdown-trigger:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 250px;
+    color: #333;
+    padding: 15px 0;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.dropdown-item.user-info-item {
+    color: #555;
+    font-weight: normal;
+}
+
+.dropdown-item span {
+    font-weight: bold;
+}
+
+/* Additional Header Details */
+.domicilio {
+    text-transform: uppercase;
+}
+
+.btn-salir {
+    background-color: #17a2b8;
+    color: white;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-salir:hover {
+    background-color: #138496;
+}
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    min-height: calc(100vh - 110px);
+}
+
+/* Sidebar */
+.sidebar-wrapper {
+    width: 260px;
+    background-color: #f7f9fc; /* Very light blue-gray */
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.btn-ir-inicio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    margin: 15px;
+    background-color: #fff;
+    border: 1px solid #ac003e; /* SUNAT red border */
+    color: #ac003e; /* SUNAT red text */
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.btn-ir-inicio:hover {
+    background-color: #fcf0f3;
+}
+
+/* Sidebar Accordion Menu */
+.sidebar-menu {
+    flex-grow: 1;
+}
+
+.menu-title-main {
+    padding: 15px 20px;
+    color: #005aa3;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.accordion-menu {
+    list-style: none;
+    font-size: 14px;
+}
+
+.menu-item .menu-label {
+    padding: 8px 20px 8px 10px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-item .menu-label:hover {
+    background-color: #edf2f9;
+}
+
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.submenu-link {
+    display: block;
+    padding: 8px 20px 8px 10px;
+    color: #005aa3;
+    text-decoration: none;
+}
+
+.submenu-link:hover {
+    text-decoration: underline;
+}
+
+.submenu-link.active {
+    font-weight: bold;
+    background-color: transparent;
+}
+
+/* Main Content */
+.content-area {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.welcome-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.welcome-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 900px;
+}

@@ -1,0 +1,242 @@
+/* Base styles based on the third image */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.auth-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.auth-left-section {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.auth-welcome {
+    font-size: 38px;
+    font-weight: 700;
+    color: #0099cc; /* SUNAT Blue */
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #005aa3; /* Darker blue */
+}
+
+/* Auth Box Container */
+.auth-box-wrapper {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid #7cb3f2;
+    border-radius: 4px;
+    padding: 40px;
+    background-color: #ffffff;
+}
+
+/* Tabs */
+.login-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 8px 25px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+}
+
+.tab-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.tab-btn:last-child {
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.tab-btn.active {
+    background-color: #0066cc;
+    color: white;
+    border-color: #0066cc;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cce0ff;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #0066cc;
+}
+
+/* Remember me toggle */
+.remember-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.remember-me label:first-child {
+    margin-right: 15px;
+}
+
+/* Toggle Switch CSS */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #888;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Forgot Links */
+.forgot-links {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.forgot-links a {
+    color: #0099cc;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.forgot-links a:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn-container {
+    text-align: center;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #0099cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #007da6;
+}
+
+/* New subtle back button and cat logo */
+.subtle-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #666;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.subtle-back-btn:hover {
+    color: #005aa3;
+}
+
+.subtle-back-btn i {
+    margin-right: 5px;
+}
+
+.cat-logo-container {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+}
+

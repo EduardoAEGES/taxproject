@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNAT - Formulario Virtual 710</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="renta_anual_landing.css">
+    <link rel="stylesheet" href="formulario_710.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header 1: Logo -->
+    <header class="header-logo">
+        <img src="favicon.png" alt="SUNAT" class="sunat-img">
+    </header>
+
+    <!-- Header 2: Blue User Bar -->
+    <header class="header-blue">
+        <div class="header-blue-left">
+            <span id="header-date">14/03/2026 15:31</span>
+        </div>
+        <div class="header-blue-right">
+            <div class="user-dropdown">
+                <span class="dropdown-trigger">
+                    Bienvenido, EMPRESA EJEMPLO S.A.C.<i class="fas fa-caret-down"></i>
+                </span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item user-info-item">EMPRESA EJEMPLO S.A.C.</div>
+                    <div class="dropdown-item user-info-item">RUC: <span id="dropdown-ruc">20123456789</span></div>
+                    <div class="dropdown-item user-info-item">Usuario: <span id="dropdown-user">ADMIN</span></div>
+                </div>
+            </div>
+            
+            <span class="domicilio">Domicilio: HABIDO</span>
+            <a href="index.html" class="btn-salir">Salir</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar-wrapper">
+            <a href="index.html" class="btn-ir-inicio">
+                <i class="fas fa-home"></i> Ir al Inicio
+            </a>
+
+            <div class="sidebar-menu">
+                <div class="menu-title-main">
+                    MIS DECLARACIONES Y PAGOS
+                </div>
+
+                <ul class="accordion-menu">
+                    <li class="menu-item has-children open">
+                        <div class="menu-label"><i class="fas fa-caret-down"></i> Presentación y pago</div>
+                        <ul class="submenu" style="display: block;">
+                            <li class="menu-item has-children open">
+                                <div class="menu-label"><i class="fas fa-caret-down"></i> Renta Anual</div>
+                                <ul class="submenu" style="display: block;">
+                                    <li><a href="#" class="submenu-link">709 Renta Anual PERSONAS</a></li>
+                                    <li><a href="formulario_710.html" class="submenu-link active">710 Renta Anual EMPRESAS</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-children">
+                        <div class="menu-label"><i class="fas fa-caret-right"></i> Consultas</div>
+                        <ul class="submenu" style="display: none;">
+                            <li class="menu-item has-children">
+                                <div class="menu-label"><i class="fas fa-caret-right"></i> Consultas de Presentación y Pago</div>
+                                <ul class="submenu" style="display: none;">
+                                    <li><a href="#" class="submenu-link">Consulta de Declaraciones y Pagos de Renta Anual 2019 - 2026</a></li>
+                                    <li><a href="#" class="submenu-link">Consulta de Declaraciones y Pagos - Nueva Plataforma</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area form-area">
+            
+            <!-- Top Tabs Sequence -->
+            <div class="form-tabs">
+                <div class="form-tab-btn active"><span class="tab-arrow-left"></span>Complete<span class="tab-arrow-right"></span></div>
+                <div class="form-tab-btn"><span class="tab-arrow-left"></span>Presente/Pague<span class="tab-arrow-right"></span></div>
+                <div class="form-tab-btn"><span class="tab-arrow-left"></span>Constancia<span class="tab-arrow-right"></span></div>
+            </div>
+
+            <div class="step-indication">
+                <strong>Paso 1:</strong> Complete o revise los datos del formulario. Las casillas en color verde permiten ingresar detalle de la información
+                <button class="btn-restore" style="display: none;" id="btn-restore"><i class="fas fa-undo"></i> Restablecer Personalizado</button>
+            </div>
+
+            <!-- Main Form Card -->
+            <div class="form-card">
+                <div class="form-card-header">
+                    <h2>Formulario Virtual N° 710 Renta Anual - EMPRESAS <span id="header-year-display"></span> <i class="fas fa-question-circle header-help" id="header-help" style="display: none;"></i></h2>
+                </div>
+                
+                <div class="form-card-body" id="ejercicio-selection-area">
+                    <p class="form-instruction">Si desea presentar su declaración jurada debe seleccionar el ejercicio que va a declarar.</p>
+                    
+                    <div class="form-row">
+                        <label for="select-ejercicio">Ejercicio</label>
+                        <select id="select-ejercicio" class="sunat-select">
+                            <option value="">Seleccionar</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Hidden form sections that appear after selection -->
+                <div id="form-details-area" style="display: none;">
+                    <div class="form-tabs-container">
+                    <div class="main-form-tabs">
+                        <div class="main-tab active" data-main-target="seccion-informativa">Sección Informativa</div>
+                        <div class="main-tab" data-main-target="seccion-determinativa" id="tab-determinativa">Sección Determinativa</div>
+                    </div>
+                </div>
+
+                <!-- SECCION INFORMATIVA -->
+                <div id="seccion-informativa" class="main-tab-content active">
+                    <div class="sub-seccion-tabs">
+                        <div class="sub-seccion-tab active" data-target="identificacion-content">Identificación</div>
+                        <div class="sub-seccion-tab disabled" title="Deshabilitado por el usuario" data-target="complementaria-content">Información Complementaria</div>
+                    </div>
+
+                    <div class="form-body-content tab-content-view active" id="identificacion-content">
+                        <div class="form-grid-row">
+                            <div class="form-label-col">Indicador de rectificatoria</div>
+                            <div class="form-input-col">
+                                <label class="radio-label"><input type="radio" name="rectificatoria" checked> Original</label>
+                                <label class="radio-label"><input type="radio" name="rectificatoria"> Sustitutoria/Rectificatoria</label>
+                            </div>
+                        </div>
+
+                        <h3 class="subsection-title">Tratamiento Especial</h3>
+                        <!-- [Previous content remains here, just wrapping it in a div] -->
+                        <!-- Régimen de Renta -->
+                        <div class="form-group-box">
+                            <h4 class="group-box-title">Régimen de Renta</h4>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Tipo de Régimen</div>
+                                <div class="form-input-col">
+                                    <select id="select-regimen" class="sunat-select" style="width: 250px;">
+                                        <option value="">--Seleccionar--</option>
+                                        <option value="GENERAL">RÉGIMEN GENERAL</option>
+                                        <option value="MYPE">RÉGIMEN MYPE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exoneración -->
+                        <div class="form-group-box">
+                            <h4 class="group-box-title">Exoneración</h4>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">¿Está exonerado totalmente del impuesto a la Renta por alguna norma legal?</div>
+                                <div class="form-input-col">
+                                    <label class="radio-label"><input type="radio" name="exonerado" value="SI"> Si</label>
+                                    <label class="radio-label"><input type="radio" name="exonerado" value="NO" checked> No</label>
+                                </div>
+                            </div>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Base Legal</div>
+                                <div class="form-input-col row-input">
+                                    <span class="field-number">210</span>
+                                    <select class="sunat-select" disabled>
+                                        <option>--Seleccionar--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Otros - Especifique Norma</div>
+                                <div class="form-input-col row-input">
+                                    <span class="field-number">216</span>
+                                    <input type="text" class="sunat-input" value="INGRESAR" disabled style="background-color: #aaa; color: #555; border: none;">
+                                </div>
+                            </div>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Otros - Fecha</div>
+                                <div class="form-input-col row-input">
+                                    <span class="field-number">343</span>
+                                    <div class="date-input-wrapper" style="opacity: 0.6;">
+                                        <input type="text" class="sunat-input date-input" value="DD/MM/AAAA" disabled style="background-color: #aaa; color: #555; border: none;">
+                                        <button class="calendar-btn" disabled><i class="far fa-calendar-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inafectación -->
+                        <div class="form-group-box">
+                            <h4 class="group-box-title" style="color: #0084aa;">Inafectación</h4>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">¿Está inafecto al Impuesto a la Renta por alguna norma legal?</div>
+                                <div class="form-input-col">
+                                    <label class="radio-label"><input type="radio" name="inafecto" value="SI"> Si</label>
+                                    <label class="radio-label"><input type="radio" name="inafecto" value="NO" checked> No</label>
+                                </div>
+                            </div>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Base Legal</div>
+                                <div class="form-input-col row-input">
+                                    <span class="field-number">221</span>
+                                    <select class="sunat-select" disabled>
+                                        <option>--Seleccionar--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">Otros - Especifique</div>
+                                <div class="form-input-col row-input">
+                                    <span class="field-number">222</span>
+                                    <input type="text" class="sunat-input" value="INGRESAR" disabled style="background-color: #aaa; color: #555; border: none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donaciones -->
+                        <div class="form-group-box">
+                            <h4 class="group-box-title" style="color: #0084aa;">Donaciones</h4>
+                            <div class="form-grid-row">
+                                <div class="form-label-col">¿Está deduciendo gastos por concepto de donaciones según las normas vigentes?</div>
+                                <div class="form-input-col">
+                                    <label class="radio-label"><input type="radio" name="donaciones" value="SI"> Si</label>
+                                    <label class="radio-label"><input type="radio" name="donaciones" value="NO" checked> No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón Siguiente Centrado -->
+                        <div class="form-footer-actions">
+                            <button class="sunat-btn-primary btn-next-tab" data-next="complementaria-content">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Nueva Sección: Información Complementaria -->
+                    <div class="form-body-content tab-content-view" id="complementaria-content" style="display: none;">
+                        
+                        <!-- Sub-tabs dentro de Información Complementaria -->
+                        <div class="info-complementaria-tabs">
+                            <div class="info-comp-tab active">Información General</div>
+                            <div class="info-comp-tab">100 Principales socios, asociados y otros</div>
+                            <div class="info-comp-tab">Alquileres Pagados</div>
+                            <div class="info-comp-tab">Empresas Constructoras...</div>
+                            <div class="info-comp-tab">ITAN</div>
+                            <div class="info-comp-tab">Normas Internacionales...</div>
+                        </div>
+
+                        <div class="complementaria-grid">
+                            <!-- Datos del Contador -->
+                            <div class="complementaria-group">
+                                <h4 class="complementaria-group-title">Datos del Contador</h4>
+                                <div class="form-row-comp">
+                                    <label>Tipo de Documento:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">687</span>
+                                        <select class="sunat-select-small"><option>--Seleccionar--</option></select>
+                                    </div>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Nro de documento:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">-</span>
+                                        <input type="text" class="sunat-input-small" value="INGRESAR" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Apellidos y Nombres:</label>
+                                    <input type="text" class="sunat-input-small full-width" disabled>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>C.P.C.:</label>
+                                    <input type="text" class="sunat-input-small full-width">
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Correo Electrónico 1:</label>
+                                    <input type="text" class="sunat-input-small full-width" value="INGRESAR">
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Correo Electrónico 2:</label>
+                                    <input type="text" class="sunat-input-small full-width" value="INGRESAR">
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Teléfono Fijo:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">250</span>
+                                        <input type="text" class="sunat-input-small" value="INGRESAR" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Celular:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">251</span>
+                                        <input type="text" class="sunat-input-small" value="INGRESAR" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Datos del Representante Legal -->
+                            <div class="complementaria-group">
+                                <h4 class="complementaria-group-title">Datos del Representante Legal</h4>
+                                <div class="form-row-comp">
+                                    <label>Tipo de Documento:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">225</span>
+                                        <select class="sunat-select-small"><option>--Seleccionar--</option></select>
+                                    </div>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Nro de documento:</label>
+                                    <div class="input-with-number">
+                                        <span class="field-number-small">226</span>
+                                        <input type="text" class="sunat-input-small" value="INGRESAR" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row-comp">
+                                    <label>Apellidos y Nombres:</label>
+                                    <input type="text" class="sunat-input-small full-width" disabled>
+                                </div>
+                                <div class="form-row-comp" style="margin-top: 20px;">
+                                    <label class="radio-label" style="font-size: 12px;">
+                                        <input type="checkbox"> Confirma los datos del representante legal.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-actions centered">
+                            <button class="sunat-btn-outline btn-prev-tab" data-prev="identificacion-content"><i class="fas fa-chevron-left"></i> Anterior</button>
+                            <button class="sunat-btn-primary" id="btn-next-to-determinativa">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCION DETERMINATIVA -->
+                <div id="seccion-determinativa" class="main-tab-content" style="display: none;">
+                    <div class="deterministic-tabs-container">
+                        <div class="det-tab active" data-det-target="eeff-section">Estados Financieros</div>
+                        <div class="det-tab" data-det-target="impuesto-renta-section">Impuesto a la Renta</div>
+                        <div class="det-tab" data-det-target="cred-renta-section">Cred. Contra Imp. Renta</div>
+                        <div class="det-tab" data-det-target="deuda-section">Determinación de la Deuda</div>
+                    </div>
+
+                    <div id="eeff-section" class="deterministic-tabs-content-view">
+                        <div class="eeff-header-actions">
+                            <div class="eeff-sub-tabs">
+                                <div class="eeff-tab active" data-eeff-target="activo-content">Activo</div>
+                                <div class="eeff-tab" data-eeff-target="pasivo-patrimonio-content">Pasivo y Patrimonio</div>
+                                <div class="eeff-tab" data-eeff-target="estado-resultados-content">Estado de Resultados</div>
+                            </div>
+                            <button class="sunat-btn-secondary"><i class="fas fa-file-import"></i> Importar</button>
+                        </div>
+
+                    <!-- ACTIVO CONTENT -->
+                    <div id="activo-content" class="eeff-tab-content">
+                        <p class="det-instruction">I. Estado de Situación Financiera (Balance General) - Valor Histórico al 31 de Dic. 2025</p>
+                        
+                        <div class="financial-table-header">ACTIVOS</div>
+                        
+                        <div class="financial-grid">
+                            <!-- Column 1 -->
+                            <div class="column-container">
+                                <div class="financial-row">
+                                    <span class="fin-label">Efectivo y equivalentes de efectivo</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">359</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="359" value="0">
+                                            <span class="fin-display" id="disp-359">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Inversiones Financieras</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">360</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="360" value="0">
+                                            <span class="fin-display" id="disp-360">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Cuentas por cobrar comerciales - terceros</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">361</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="361" value="0">
+                                            <span class="fin-display" id="disp-361">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Cuentas por cobrar comerciales - relacionadas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">362</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="362" value="0">
+                                            <span class="fin-display" id="disp-362">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Cuentas por cobrar al personal, acc (socios) y directores</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">363</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="363" value="0">
+                                            <span class="fin-display" id="disp-363">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Cuentas por cobrar diversas - terceros</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">364</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="364" value="0">
+                                            <span class="fin-display" id="disp-364">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Cuentas por cobrar diversas - relacionadas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">365</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="365" value="0">
+                                            <span class="fin-display" id="disp-365">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Servicios y otros contratados por anticipado</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">366</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="366" value="0">
+                                            <span class="fin-display" id="disp-366">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Estimación de cuentas de cobranza dudosa</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">367</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="367" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-367">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Mercaderías</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">368</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="368" value="0">
+                                            <span class="fin-display" id="disp-368">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Productos terminados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">369</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="369" value="0">
+                                            <span class="fin-display" id="disp-369">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Subproductos, desechos y desperdicios</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">370</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="370" value="0">
+                                            <span class="fin-display" id="disp-370">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Productos en proceso</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">371</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="371" value="0">
+                                            <span class="fin-display" id="disp-371">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Materias primas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">372</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="372" value="0">
+                                            <span class="fin-display" id="disp-372">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Materiales auxiliares, suministros y repuestos</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">373</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="373" value="0">
+                                            <span class="fin-display" id="disp-373">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Envases y embalajes</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">374</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="374" value="0">
+                                            <span class="fin-display" id="disp-374">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2 -->
+                            <div class="column-container">
+                                <div class="financial-row">
+                                    <span class="fin-label">Inventarios por recibir</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">375</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="375" value="0">
+                                            <span class="fin-display" id="disp-375">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Desvalorización de Inventarios</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">376</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="376" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-376">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Activos no corrientes mantenidos para la venta</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">377</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="377" value="0">
+                                            <span class="fin-display" id="disp-377">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Otros activos corrientes</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">378</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="378" value="0">
+                                            <span class="fin-display" id="disp-378">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Inversiones mobiliarias</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">379</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="379" value="0">
+                                            <span class="fin-display" id="disp-379">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Propiedades de Inversión (1)</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">380</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="380" value="0">
+                                            <span class="fin-display" id="disp-380">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Activos por derecho de uso (2)</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">381</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="381" value="0">
+                                            <span class="fin-display" id="disp-381">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Propiedades, Planta y Equipo</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">382</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="382" value="0">
+                                            <span class="fin-display" id="disp-382">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Depreciación de (1), (2) y PPE acumulados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">383</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="383" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-383">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Intangibles</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">384</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="384" value="0">
+                                            <span class="fin-display" id="disp-384">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Activos biológicos</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">385</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="385" value="0">
+                                            <span class="fin-display" id="disp-385">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Deprec. Act. biológico y amortiz. Acumulada</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">386</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="386" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-386">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Desvalorización de activo inmovilizado</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">387</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="387" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-387">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Activo diferido</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">388</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="388" value="0">
+                                            <span class="fin-display" id="disp-388">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Otros activos no corrientes</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">389</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc" data-code="389" value="0">
+                                            <span class="fin-display" id="disp-389">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row total-calc-row">
+                                    <span class="fin-label" style="font-weight: bold;">TOTAL ACTIVO NETO</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">390</span>
+                                        <div class="fin-value-box total-box" id="total-activo-display">S/ 0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TOTAL ACTIVO NETO row was here, moved inside grid but let's keep it close to previous structure -->
+                        <div class="form-footer-actions centered" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                            <button class="sunat-btn-outline"><i class="fas fa-chevron-left"></i> Anterior</button>
+                            <button class="sunat-btn-primary btn-next-eeff" data-next="pasivo-patrimonio-content">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- PASIVO Y PATRIMONIO CONTENT -->
+                    <div id="pasivo-patrimonio-content" class="eeff-tab-content" style="display: none;">
+                        <p class="det-instruction">I. Estado de Situación Financiera (Balance General) - Valor Histórico al 31 de Dic. 2025</p>
+                        
+                        <div class="financial-grid">
+                            <!-- PASIVO Column -->
+                            <div class="column-container">
+                                <div class="financial-table-header">PASIVO</div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Sobregiros Bancarios</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">401</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="401" value="0">
+                                            <span class="fin-display" id="disp-401">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Trib. y aport. sist. pens. y salud por pagar</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">402</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="402" value="0">
+                                            <span class="fin-display" id="disp-402">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Remuneraciones y participaciones por pagar</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">403</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="403" value="0">
+                                            <span class="fin-display" id="disp-403">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ctas por pagar comerciales - terceros</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">404</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="404" value="0">
+                                            <span class="fin-display" id="disp-404">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ctas por pagar comerciales - relacionadas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">405</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="405" value="0">
+                                            <span class="fin-display" id="disp-405">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ctas por pagar accionist (soc, partic) y direct.</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">406</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="406" value="0">
+                                            <span class="fin-display" id="disp-406">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ctas por pagar diversas - terceros</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">407</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="407" value="0">
+                                            <span class="fin-display" id="disp-407">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ctas por pagar diversas - relacionadas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">408</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="408" value="0">
+                                            <span class="fin-display" id="disp-408">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Obligaciones financieras</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">409</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="409" value="0">
+                                            <span class="fin-display" id="disp-409">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Provisiones</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">410</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="410" value="0">
+                                            <span class="fin-display" id="disp-410">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Pasivo Diferido</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">411</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-pasivo" data-code="411" value="0">
+                                            <span class="fin-display" id="disp-411">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row total-calc-row">
+                                    <span class="fin-label" style="font-weight: bold;">TOTAL PASIVO</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">412</span>
+                                        <div class="fin-value-box total-box" id="total-pasivo-display">S/ 0</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PATRIMONIO Column -->
+                            <div class="column-container">
+                                <div class="financial-table-header">PATRIMONIO</div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Capital</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">414</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="414" value="0">
+                                            <span class="fin-display" id="disp-414">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Acciones de inversión</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">415</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="415" value="0">
+                                            <span class="fin-display" id="disp-415">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Capital Adicional positivo</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">416</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="416" value="0">
+                                            <span class="fin-display" id="disp-416">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Capital Adicional negativo</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">417</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="417" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-417">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Resultados no realizados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">418</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="418" value="0">
+                                            <span class="fin-display" id="disp-418">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Excedente de revaluación</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">419</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="419" value="0">
+                                            <span class="fin-display" id="disp-419">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Reservas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">420</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="420" value="0">
+                                            <span class="fin-display" id="disp-420">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Resultados Acumulados Positivos</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">421</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="421" value="0">
+                                            <span class="fin-display" id="disp-421">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Resultados Acumulados Negativos</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">422</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="422" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-422">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Utilidad del ejercicio</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">423</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="423" value="0">
+                                            <span class="fin-display" id="disp-423">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Pérdida del ejercicio</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">424</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-patrimonio" data-code="424" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-424">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row total-calc-row">
+                                    <span class="fin-label" style="font-weight: bold;">TOTAL PATRIMONIO</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">425</span>
+                                        <div class="fin-value-box total-box" id="total-patrimonio-display">S/ 0</div>
+                                    </div>
+                                </div>
+                                <div class="financial-row total-calc-row" style="border-top: 3px double #333 !important; margin-top: 15px;">
+                                    <span class="fin-label" style="font-weight: bold;">TOTAL PASIVO Y PATRIMONIO</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">426</span>
+                                        <div class="fin-value-box total-box" id="total-pasivo-patrimonio-display">S/ 0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-actions centered" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                            <button class="sunat-btn-outline btn-prev-eeff" data-prev="activo-content"><i class="fas fa-chevron-left"></i> Anterior</button>
+                            <button class="sunat-btn-primary btn-next-eeff" data-next="estado-resultados-content">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- ESTADO DE RESULTADOS CONTENT -->
+                    <div id="estado-resultados-content" class="eeff-tab-content" style="display: none;">
+                        <p class="det-instruction">II. Estado de Resultados del 01/01 al 31/12 del 2025</p>
+                        
+                        <div class="financial-grid">
+                            <!-- Column 1 -->
+                            <div class="column-container">
+                                <div class="financial-row">
+                                    <span class="fin-label">Ventas Netas o Ing. por Servicios</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">461</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="461" value="0">
+                                            <span class="fin-display" id="disp-461">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Desc. rebajas y bonif. concedidas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">462</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="462" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-462">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Ventas Netas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">463</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-463">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Costo de Ventas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">464</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="464" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-464">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado bruto Utilidad</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">466</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-466">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado bruto Pérdida</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">467</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-467">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Gastos de Ventas</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">468</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="468" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-468">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Gastos de Administración</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">469</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="469" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-469">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado de operación Utilidad</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">470</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-470">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado de operación Pérdida</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">471</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-471">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2 -->
+                            <div class="column-container">
+                                <div class="financial-row">
+                                    <span class="fin-label">Gastos Financieros</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">472</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="472" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-472">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Ingresos Financieros Gravados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">473</span>
+                                        <div class="fin-value-box highlight-green-cell er-modal-trigger" data-modal="modal-473" style="cursor: pointer;">
+                                            <input type="hidden" class="fin-calc-er" data-code="473" value="0">
+                                            <span class="fin-display" id="disp-473">S/ 0</span>
+                                            <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Otros Ingresos gravados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">475</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="475" value="0">
+                                            <span class="fin-display" id="disp-475">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Otros Ingresos no gravados</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">476</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="476" value="0">
+                                            <span class="fin-display" id="disp-476">S/ 0</span>
+                                            <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Enajen. de val. y bienes del Act. F.</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">477</span>
+                                        <div class="fin-value-box highlight-green-cell er-modal-trigger" data-modal="modal-477" style="cursor: pointer;">
+                                            <input type="hidden" class="fin-calc-er" data-code="477" value="0">
+                                            <span class="fin-display" id="disp-477">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Costo enajen. de val. y bienes A.F.</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">478</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="478" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-478">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Gastos diversos</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">480</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="480" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-480">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado antes de part. Utilidad</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">484</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-484">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado antes de part. Pérdida</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">485</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-485">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Distribución legal de la renta</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">486</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="486" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-486">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado antes del imp. Utilidad</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">487</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-487">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado antes del imp. Pérdida</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">489</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-489">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Impuesto a la renta - Ingreso</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">351</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="351" value="0">
+                                            <span class="fin-display" id="disp-351">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label">Impuesto a la renta - Gasto</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">490</span>
+                                        <div class="fin-value-box">
+                                            <input type="text" class="fin-input fin-calc-er" data-code="490" data-deduction="true" value="0">
+                                            <span class="fin-display" id="disp-490">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado del ejercicio Utilidad</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">492</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-492">S/ 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="financial-row">
+                                    <span class="fin-label" style="font-weight: bold;">Resultado del ejercicio Pérdida</span>
+                                    <div class="fin-input-cell">
+                                        <span class="field-number-small">493</span>
+                                        <div class="fin-value-box highlight-blue-cell">
+                                            <span class="fin-display" id="disp-493">(S/ 0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-actions centered" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
+                            <button class="sunat-btn-outline btn-prev-eeff" data-prev="pasivo-patrimonio-content"><i class="fas fa-chevron-left"></i> Anterior</button>
+                            <button class="sunat-btn-primary">Siguiente <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- IMPUESTO A LA RENTA AT THE SAME LEVEL AS EEFF -->
+                <div id="impuesto-renta-section" class="deterministic-tabs-content-view" style="display: none; padding: 25px;">
+                    <p class="det-instruction">II. Impuesto a la Renta - Ejercicio 2025</p>
+                    <div class="financial-grid" style="grid-template-columns: 1fr; max-width: 850px;">
+                        <div class="financial-row">
+                            <span class="fin-label">Utilidad antes de adiciones y deducciones</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">100</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-100">S/ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Pérdida antes de adiciones y deducciones</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">101</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-101">(S/ 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Adiciones para determinar la renta imponible</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">103</span>
+                                <div class="fin-value-box">
+                                    <input type="text" class="fin-input fin-calc-ir" data-code="103" value="0">
+                                    <span class="fin-display" id="disp-103">S/ 0</span>
+                                    <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Deducciones para determinar la renta imponible</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">105</span>
+                                <div class="fin-value-box">
+                                    <input type="text" class="fin-input fin-calc-ir" data-code="105" data-deduction="true" value="0">
+                                    <span class="fin-display" id="disp-105">(S/ 0)</span>
+                                    <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Renta neta del ejercicio casilla (100 o 101) + casilla 103 - casilla 105</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">106</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-106">S/ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Pérdida neta del ejercicio casilla (100 o 101) + casilla 103 - casilla 105</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">107</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-107">(S/ 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Pérdidas netas compensables de ejercicios anteriores</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">108</span>
+                                <div class="fin-value-box highlight-green-cell er-modal-trigger" data-modal="modal-108" style="cursor: pointer;">
+                                    <input type="hidden" class="fin-calc-ir" data-code="108" data-deduction="true" value="0">
+                                    <span class="fin-display" id="disp-108">(S/ 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Rentas exoneradas y otros conceptos no gravados</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">120</span>
+                                <div class="fin-value-box">
+                                    <input type="text" class="fin-input fin-calc-ir" data-code="120" data-deduction="true" value="0">
+                                    <span class="fin-display" id="disp-120">(S/ 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row" style="background: #fdfdfd;">
+                            <span class="fin-label" style="font-weight: bold;">Renta Neta Imponible casilla 106 - casilla 108</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">110</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-110">S/ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row" style="background: #fdfdfd;">
+                            <span class="fin-label" style="font-weight: bold;">TOTAL IMPUESTO A LA RENTA</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">113</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-113">S/ 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Saldo de pérdidas no compensadas</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">111</span>
+                                <div class="fin-value-box highlight-blue-cell">
+                                    <span class="fin-display" id="disp-111">(S/ 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Coeficiente</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">686</span>
+                                <div class="fin-value-box">
+                                    <input type="text" class="fin-input" data-code="686" value="0.1">
+                                    <span class="fin-display" id="disp-686">0.1</span>
+                                    <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <span class="fin-label">Coeficiente o porcentaje para el cálculo del pago a cuenta</span>
+                            <div class="fin-input-cell">
+                                <span class="field-number-small">610</span>
+                                <div class="fin-value-box">
+                                    <input type="text" class="fin-input" data-code="610" value="10">
+                                    <span class="fin-display" id="disp-610">10 %</span>
+                                    <i class="fas fa-question-circle" style="margin-left: 5px; color: #666; font-size: 14px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modals Overlay -->
+    <div class="sunat-modal-overlay" id="modal-overlay">
+        
+        <!-- MODAL EEFF WARNING (150 UIT) -->
+        <div class="sunat-modal" id="modal-eeff-uit" style="display: none; width: 600px;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body">
+                Estimado contribuyente, para el llenado de los Estados Financieros debe considerar lo siguiente: Si el "Ingreso por Ventas Netas" es mayor a 150 UIT (S/ 772,500), deberá detallar el Balance General y el Estado de Resultados.
+            </div>
+            <div class="sunat-modal-footer single-btn">
+                <button class="sunat-btn-primary" id="btn-close-eeff-uit">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- MODAL 473 - Ingresos Financieros Gravados -->
+        <div class="sunat-modal" id="modal-473" style="display: none; width: 600px;">
+            <div class="sunat-modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Ingresos Financieros Gravados</span>
+                <button class="btn-modal-close-x" style="background:transparent; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sunat-modal-body">
+                <div class="financial-row">
+                    <span class="fin-label">Ingresos Financieros Gravados</span>
+                    <div class="fin-input-cell">
+                        <span class="field-number-small">650</span>
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input fin-modal-input" data-code="650" value="0">
+                            <span class="fin-display" id="disp-650">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="financial-row">
+                    <span class="fin-label">Ganancia Neta por diferencia de cambio</span>
+                    <div class="fin-input-cell">
+                        <span class="field-number-small">651</span>
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input fin-modal-input" data-code="651" value="0">
+                            <span class="fin-display" id="disp-651">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="financial-row total-calc-row">
+                    <span class="fin-label" style="font-weight: bold;">Total</span>
+                    <div class="fin-input-cell">
+                        <div class="fin-value-box highlight-blue-cell" style="width: 140px; justify-content: flex-end;">
+                            <span class="fin-display" id="modal-total-473">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sunat-modal-footer dual-btn">
+                <button class="sunat-btn-outline btn-modal-cancel">Cancelar</button>
+                <button class="sunat-btn-primary btn-modal-save" data-target="473">Guardar</button>
+            </div>
+        </div>
+
+        <!-- MODAL 477 - Enajenación de valores -->
+        <div class="sunat-modal" id="modal-477" style="display: none; width: 600px;">
+            <div class="sunat-modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Enajen. de val. y bienes del Act. F.</span>
+                <button class="btn-modal-close-x" style="background:transparent; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sunat-modal-body">
+                <div class="financial-row">
+                    <span class="fin-label">Ingresos Afectos</span>
+                    <div class="fin-input-cell">
+                        <span class="field-number-small">432</span>
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input fin-modal-input" data-code="432" value="0">
+                            <span class="fin-display" id="disp-432">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="financial-row">
+                    <span class="fin-label">Ingresos Exonerados</span>
+                    <div class="fin-input-cell">
+                        <span class="field-number-small">433</span>
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input fin-modal-input" data-code="433" value="0">
+                            <span class="fin-display" id="disp-433">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="financial-row total-calc-row">
+                    <span class="fin-label" style="font-weight: bold;">Total</span>
+                    <div class="fin-input-cell">
+                        <div class="fin-value-box highlight-blue-cell" style="width: 140px; justify-content: flex-end;">
+                            <span class="fin-display" id="modal-total-477">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sunat-modal-footer dual-btn">
+                <button class="sunat-btn-outline btn-modal-cancel">Cancelar</button>
+                <button class="sunat-btn-primary btn-modal-save" data-target="477">Guardar</button>
+            </div>
+        </div>
+
+        
+        <!-- Modal 1: Confirm selection -->
+        <div class="sunat-modal" id="modal-confirm" style="display: none;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body">
+                Sr. Contribuyente, usted ha seleccionado el ejercicio <span id="modal-year-text"></span> ¿Desea continuar con la presentación del ejercicio <span id="modal-year-text2"></span>?
+            </div>
+            <div class="sunat-modal-footer dual-btn">
+                <button class="sunat-btn-primary" id="btn-modal-yes">Si</button>
+                <button class="sunat-btn-primary" id="btn-modal-no">No</button>
+            </div>
+        </div>
+
+        <!-- Modal 2: Fechas Vencimiento -->
+        <div class="sunat-modal" id="modal-vencimiento" style="display: none;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body">
+                La fecha de vencimiento para presentar su declaración de Renta <span id="modal-venc-year"></span> es: 01/06/2026<br>
+                Vencimiento correspondiente a contribuyentes comprendidos en los alcances de la Ley 31940
+            </div>
+            <div class="sunat-modal-footer single-btn">
+                <button class="sunat-btn-primary" id="btn-modal-ok-venc">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- Modal 3: Bienvenido general note -->
+        <div class="sunat-modal" id="modal-bienvenido" style="display: none;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body">
+                Bienvenido a la declaración Anual.<br>
+                Señor Contribuyente para efectos de una adecuada presentación, usted primero debe llenar y registrar la "Sección Informativa" y luego de ello, debe registrar la "Sección Determinativa" del impuesto o del saldo a favor (de corresponder)<br>
+                Para un adecuado registro de su información, le sugerimos revisar previamente las ayudas del Formulario Virtual, Asimismo, se le comunica que la información declarada se está grabando de manera automática
+            </div>
+            <div class="sunat-modal-footer single-btn">
+                <button class="sunat-btn-primary" id="btn-modal-ok-bienv">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- Modal 4: MYPE Confirmation -->
+        <div class="sunat-modal" id="modal-mype" style="display: none;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body">
+                Por el año <span id="modal-mype-year"></span> usted está afecto al Régimen MYPE Tributario
+            </div>
+            <div class="sunat-modal-footer single-btn">
+                <button class="sunat-btn-primary blue-btn-border" id="btn-modal-ok-mype">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- Modal 5: EEFF Information -->
+        <div class="sunat-modal" id="modal-eeff" style="display: none; width: 600px;">
+            <div class="sunat-modal-header">Mensaje</div>
+            <div class="sunat-modal-body" style="line-height: 1.6;">
+                La información de los EEFF debe ser formulada de acuerdo a las Normas y Principios Contables, los ajustes para determinar la base tributaria deben ser consignados en las casillas de Adiciones y Deducciones
+            </div>
+            <div class="sunat-modal-footer single-btn">
+                <button class="sunat-btn-primary" id="btn-modal-ok-eeff">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- MODAL 108 - DETERMINACIÓN DE LA PÉRDIDA COMPENSABLE -->
+        <div class="sunat-modal" id="modal-108" style="display: none; width: 800px;">
+            <div class="sunat-modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Detalle de la Casilla 108</span>
+                <button class="btn-modal-close-x" style="background:transparent; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sunat-modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="font-size: 14px; color: #333; margin-bottom: 10px;">DETERMINACIÓN DE LA PÉRDIDA COMPENSABLE</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Sistema de Arrastre de Pérdidas del periodo anterior</p>
+                    <div style="display: flex; justify-content: center; gap: 40px;">
+                        <label class="radio-label"><input type="radio" name="sistema-arrastre" value="A"> A</label>
+                        <label class="radio-label"><input type="radio" name="sistema-arrastre" value="B" checked> B</label>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <button class="sunat-btn-primary" id="btn-add-loss" style="font-size: 12px; padding: 5px 15px;">Agregar</button>
+                </div>
+
+                <table class="sunat-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #ddd;">
+                            <th style="padding: 10px; text-align: center; width: 60px;"></th>
+                            <th style="padding: 10px; text-align: center;">Ejercicio</th>
+                            <th style="padding: 10px; text-align: center;">Saldo de Pérdidas al 31/12/2025</th>
+                            <th style="padding: 10px; text-align: center;">Compensación de Pérdidas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-losses-body">
+                        <!-- Rows added dynamically -->
+                        <tr id="no-records-row">
+                            <td colspan="4" style="padding: 20px; text-align: center; color: #999;">No hay registros disponibles</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="border-top: 2px solid #ddd; font-weight: bold;">
+                            <td style="padding: 10px;" colspan="2">Total</td>
+                            <td style="padding: 10px; text-align: right;"><div class="fin-value-box highlight-blue-cell" style="display:inline-flex; min-width: 120px;" id="disp-total-loss-saldo">S/ 0</div></td>
+                            <td style="padding: 10px; text-align: right;"><div class="fin-value-box highlight-blue-cell" style="display:inline-flex; min-width: 120px;" id="disp-total-loss-comp">S/ 0</div></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="sunat-modal-footer dual-btn">
+                <button class="sunat-btn-outline btn-modal-cancel">Cancelar</button>
+                <button class="sunat-btn-primary btn-modal-save" data-target="108">Guardar</button>
+            </div>
+        </div>
+
+        <!-- MODAL ASISTENTE 108 -->
+        <div class="sunat-modal" id="modal-assistant-108" style="display: none; width: 500px; z-index: 3000;">
+            <div class="sunat-modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Detalle del Asistente de la Casilla 108</span>
+                <button class="btn-assistant-close-x" style="background:transparent; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sunat-modal-body">
+                <div class="financial-row">
+                    <span class="fin-label">Ejercicio</span>
+                    <div class="fin-input-cell">
+                        <select id="loss-year-select" class="sunat-select-small" style="width: 140px;">
+                            <option value="">--Seleccionar--</option>
+                            <!-- Generate years up to 2024 -->
+                        </select>
+                    </div>
+                </div>
+                <div class="financial-row">
+                    <span class="fin-label">Saldo de Pérdidas del <span id="lbl-loss-year">AAAA</span></span>
+                    <div class="fin-input-cell">
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input" id="input-loss-saldo" value="0">
+                            <span class="fin-display" id="disp-loss-saldo">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="financial-row">
+                    <span class="fin-label">Compensación de Pérdidas</span>
+                    <div class="fin-input-cell">
+                        <div class="fin-value-box">
+                            <input type="text" class="fin-input" id="input-loss-comp" value="0">
+                            <span class="fin-display" id="disp-loss-comp">S/ 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sunat-modal-footer dual-btn">
+                <button class="sunat-btn-outline" id="btn-assistant-cancel">Cancelar</button>
+                <button class="sunat-btn-primary" id="btn-assistant-save">Guardar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script to update auth context dynamically and handle modals -->
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // UI elements
+            const trigger = document.querySelector('.dropdown-trigger');
+            const menu = document.querySelector('.dropdown-menu');
+            const overlay = document.getElementById('modal-overlay');
+            const selectEjercicio = document.getElementById('select-ejercicio');
+            const selectRegimen = document.getElementById('select-regimen');
+            
+            // Modals
+            const modalConfirm = document.getElementById('modal-confirm');
+            const modalVenc = document.getElementById('modal-vencimiento');
+            const modalBienv = document.getElementById('modal-bienvenido');
+            const modalMype = document.getElementById('modal-mype');
+            const modalEEFF = document.getElementById('modal-eeff');
+            const modalEEFFUIT = document.getElementById('modal-eeff-uit');
+            const modal473 = document.getElementById('modal-473');
+            const modal477 = document.getElementById('modal-477');
+            const modal108 = document.getElementById('modal-108');
+            const modalAssistant108 = document.getElementById('modal-assistant-108');
+
+            let selectedYear = '';
+
+            // Dropdown & Clock
+            trigger && trigger.addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('show'); });
+            document.addEventListener('click', () => menu.classList.remove('show'));
+            const timeEl = document.getElementById('header-date');
+            function updateClock() {
+                const now = new Date();
+                timeEl.textContent = `${now.toLocaleDateString('es-PE')} ${now.toLocaleTimeString('es-PE', {hour12:false, hour:'2-digit', minute:'2-digit'})}`;
+            }
+            setInterval(updateClock, 60000); updateClock();
+
+            // Utils
+            function showModal(modal) { overlay.classList.add('show'); modal.style.display = 'block'; }
+            function hideModals() {
+                overlay.classList.remove('show');
+                [modalConfirm, modalVenc, modalBienv, modalMype, modalEEFF, modalEEFFUIT, modal473, modal477, modal108, modalAssistant108].forEach(m => { if(m) m.style.display = 'none'; });
+            }
+            function formatS(val, isDeduction = false) {
+                const f = Math.abs(val).toLocaleString('en-US');
+                return isDeduction ? `(S/ ${f})` : `S/ ${f}`;
+            }
+
+            // Exercise Flow
+            selectEjercicio && selectEjercicio.addEventListener('change', e => {
+                if(e.target.value) {
+                    selectedYear = e.target.value;
+                    document.getElementById('modal-year-text').textContent = selectedYear;
+                    document.getElementById('modal-year-text2').textContent = selectedYear;
+                    showModal(modalConfirm);
+                }
+            });
+            document.getElementById('btn-modal-yes').addEventListener('click', () => { hideModals(); document.getElementById('modal-venc-year').textContent = selectedYear; showModal(modalVenc); });
+            document.getElementById('btn-modal-no').addEventListener('click', () => { hideModals(); selectEjercicio.value = ''; });
+            document.getElementById('btn-modal-ok-venc').addEventListener('click', () => { hideModals(); showModal(modalBienv); });
+            document.getElementById('btn-modal-ok-bienv').addEventListener('click', () => {
+                hideModals();
+                document.getElementById('ejercicio-selection-area').style.display = 'none';
+                document.getElementById('form-details-area').style.display = 'block';
+                document.getElementById('header-year-display').textContent = selectedYear + " - Sección Informativa";
+            });
+            selectRegimen && selectRegimen.addEventListener('change', e => { if(e.target.value==='MYPE') { document.getElementById('modal-mype-year').textContent = selectedYear; showModal(modalMype); }});
+            document.getElementById('btn-modal-ok-mype').addEventListener('click', hideModals);
+            document.getElementById('btn-close-eeff-uit').addEventListener('click', hideModals);
+            document.getElementById('btn-modal-ok-eeff').addEventListener('click', hideModals);
+
+            // Tab Navigation
+            function switchTab(selectors, views, targetId, activeClass = 'active') {
+                selectors.forEach(s => s.classList.toggle(activeClass, s.getAttribute('data-target') === targetId || s.getAttribute('data-main-target') === targetId || s.getAttribute('data-det-target') === targetId || s.getAttribute('data-eeff-target') === targetId));
+                views.forEach(v => v.style.display = (v.id === targetId) ? 'block' : 'none');
+            }
+
+            // Main Sections (Informativa/Determinativa)
+            const mainTabs = document.querySelectorAll('.main-tab');
+            const mainContents = document.querySelectorAll('.main-tab-content');
+            let detFirst = true;
+            mainTabs.forEach(tab => tab.addEventListener('click', () => {
+                const tid = tab.getAttribute('data-main-target');
+                if(tid === 'seccion-determinativa' && detFirst) { showModal(modalEEFFUIT); detFirst = false; }
+                switchTab(mainTabs, mainContents, tid);
+                document.getElementById('header-year-display').textContent = selectedYear + (tid === 'seccion-informativa' ? " - Sección Informativa" : " - Sección Determinativa");
+            }));
+
+            // Informativa Tabs
+            const infTabs = document.querySelectorAll('.sub-seccion-tab');
+            const infViews = document.querySelectorAll('.tab-content-view');
+            infTabs.forEach(t => t.addEventListener('click', () => switchTab(infTabs, infViews, t.getAttribute('data-target'))));
+
+            // Determinativa Tabs (EEFF / IR)
+            const detTabs = document.querySelectorAll('.det-tab');
+            const detViews = document.querySelectorAll('.deterministic-tabs-content-view');
+            detTabs.forEach(t => t.addEventListener('click', () => switchTab(detTabs, detViews, t.getAttribute('data-det-target'))));
+
+            // EEFF Sub-tabs
+            const eeffTabs = document.querySelectorAll('.eeff-tab');
+            const eeffViews = document.querySelectorAll('.eeff-tab-content');
+            eeffTabs.forEach(t => t.addEventListener('click', () => switchTab(eeffTabs, eeffViews, t.getAttribute('data-eeff-target'))));
+
+            // Calculations
+            const inputsActivo = document.querySelectorAll('.fin-calc');
+            const inputsPasivo = document.querySelectorAll('.fin-calc-pasivo');
+            const inputsPatrimonio = document.querySelectorAll('.fin-calc-patrimonio');
+            const inputsER = document.querySelectorAll('.fin-calc-er');
+            const inputsIR = document.querySelectorAll('.fin-calc-ir');
+
+            function calcActivo() {
+                let t = 0; inputsActivo.forEach(i => t += (parseFloat(i.value)||0) * (i.getAttribute('data-deduction')==='true'?-1:1));
+                document.getElementById('total-activo-display').textContent = formatS(t, t<0);
+            }
+            function calcPasivoPatrimonio() {
+                let tp = 0; inputsPasivo.forEach(i => tp += (parseFloat(i.value)||0));
+                document.getElementById('total-pasivo-display').textContent = formatS(tp);
+                let tpat = 0; inputsPatrimonio.forEach(i => tpat += (parseFloat(i.value)||0) * (i.getAttribute('data-deduction')==='true'?-1:1));
+                document.getElementById('total-patrimonio-display').textContent = formatS(tpat, tpat<0);
+                const g = tp + tpat;
+                document.getElementById('total-pasivo-patrimonio-display').textContent = formatS(g, g<0);
+            }
+            function calcER() {
+                const val = c => parseFloat(document.querySelector(`.fin-calc-er[data-code="${c}"]`)?.value) || 
+                                 parseFloat(document.querySelector(`.fin-calc-er[data-code="${c}"]`)?.closest('.fin-value-box')?.querySelector('input[type="hidden"]')?.value) || 0;
+                const v463 = val(461) - val(462);
+                document.getElementById('disp-463').textContent = formatS(v463);
+                const rb = v463 - val(464);
+                document.getElementById('disp-466').textContent = formatS(Math.max(0, rb));
+                document.getElementById('disp-467').textContent = formatS(Math.max(0, -rb), true);
+                const ro = rb - val(468) - val(469);
+                document.getElementById('disp-470').textContent = formatS(Math.max(0, ro));
+                document.getElementById('disp-471').textContent = formatS(Math.max(0, -ro), true);
+                const ra = ro - val(472) + val(473) - val(475) - val(476) + val(477) - val(478) - val(480);
+                document.getElementById('disp-484').textContent = formatS(Math.max(0, ra));
+                document.getElementById('disp-485').textContent = formatS(Math.max(0, -ra), true);
+                document.getElementById('disp-487').textContent = formatS(Math.max(ra, 0));
+                document.getElementById('disp-489').textContent = formatS(Math.max(-ra, 0), true);
+                calcIR();
+            }
+            function calcIR() {
+                const util = parseFloat(document.getElementById('disp-487').textContent.replace(/[S\/ ,]/g, '')) || 0;
+                const perd = parseFloat(document.getElementById('disp-489').textContent.replace(/[S\/ (),]/g, '')) || 0;
+                document.getElementById('disp-100').textContent = formatS(util);
+                document.getElementById('disp-101').textContent = formatS(perd, true);
+
+                let v103 = 0, v105 = 0, v108 = 0, v120 = 0;
+                inputsIR.forEach(i => {
+                    const c = i.getAttribute('data-code'); 
+                    const v = parseFloat(i.value)||0;
+                    if(c==='103') v103=v; 
+                    if(c==='105') v105=v; 
+                    if(c==='108') v108=v;
+                    if(c==='120') v120=v;
+                });
+
+                // 106 / 107 (Renta/Pérdida neta del ejercicio)
+                const netEjercicio = (util - perd) + v103 - v105;
+                const v106 = Math.max(0, netEjercicio);
+                const v107 = Math.max(0, -netEjercicio);
+                document.getElementById('disp-106').textContent = formatS(v106);
+                document.getElementById('disp-107').textContent = formatS(v107, true);
+
+                // 110 (Renta imponible / Pérdida imponible)
+                // 110 = (106 - 107) + 120 - 108
+                // Note: user said "110 es igual a cas 106 o 107 + 120 - 108"
+                // Usually it's Renta Neta (106) + 120 - 108.
+                const netImponible = (v106 - v107) + v120 - v108;
+                const v110 = Math.max(0, netImponible);
+                document.getElementById('disp-110').textContent = formatS(v110);
+
+                // 113 (Impuesto a la Renta - Tranches)
+                // UIT = 5350. Up to 15 UIT (80,250) @ 10%. Excess @ 29.5%.
+                const uit = 5350;
+                const threshold = 15 * uit; // 80,250
+                let tax = 0;
+                if (v110 > 0) {
+                    if (v110 <= threshold) {
+                        tax = v110 * 0.10;
+                    } else {
+                        tax = (threshold * 0.10) + ((v110 - threshold) * 0.295);
+                    }
+                }
+                document.getElementById('disp-113').textContent = formatS(Math.round(tax));
+            }
+
+            function bind(ins, f) {
+                ins.forEach(i => {
+                    i.addEventListener('blur', () => { 
+                        i.value = parseFloat(i.value)||0; 
+                        const code = i.getAttribute('data-code');
+                        const dd = i.getAttribute('data-deduction')==='true';
+                        const d = document.getElementById('disp-'+code); 
+                        if(d) d.textContent = formatS(i.value, dd); 
+                        f(); 
+                    });
+                    i.addEventListener('input', f);
+                });
+            }
+            bind(inputsActivo, calcActivo); 
+            bind(inputsPasivo, calcPasivoPatrimonio); 
+            bind(inputsPatrimonio, calcPasivoPatrimonio); 
+            bind(inputsER, calcER); 
+            bind(inputsIR, calcIR);
+
+            // Modals
+            document.querySelectorAll('.er-modal-trigger').forEach(trig => trig.addEventListener('click', () => showModal(document.getElementById(trig.getAttribute('data-modal')))));
+            document.querySelectorAll('.btn-modal-close-x, .btn-modal-cancel').forEach(b => b.addEventListener('click', hideModals));
+            document.querySelectorAll('.btn-modal-save').forEach(b => b.addEventListener('click', () => {
+                const code = b.getAttribute('data-target'); 
+                const modal = b.closest('.sunat-modal');
+                let total = 0;
+                let totalSaldo = 0;
+                if(code === '108') {
+                    total = parseFloat(document.getElementById('disp-total-loss-comp').textContent.replace(/[S\/ ,]/g, '')) || 0;
+                    totalSaldo = parseFloat(document.getElementById('disp-total-loss-saldo').textContent.replace(/[S\/ ,]/g, '')) || 0;
+                    
+                    // Update 111 (Saldo no compensado)
+                    const v111 = Math.max(0, totalSaldo - total);
+                    document.getElementById('disp-111').textContent = formatS(v111, true);
+                } else {
+                    modal.querySelectorAll('.fin-modal-input').forEach(i => total += (parseFloat(i.value)||0));
+                }
+                const hidden = document.querySelector(`.fin-calc-er[data-code="${code}"], .fin-calc-ir[data-code="${code}"]`);
+                if(hidden) hidden.value = total;
+                const disp = document.getElementById('disp-'+code); 
+                if(disp) disp.textContent = formatS(total, code==='108' || code==='120'); 
+                hideModals(); 
+                calcER(); 
+                calcIR();
+            }));
+
+            // Loss Assistant
+            const ly = document.getElementById('loss-year-select');
+            let editingRow = null;
+
+            if(ly) {
+                for(let i=2024; i>=2002; i--) { const o = document.createElement('option'); o.value=i; o.textContent=i; ly.appendChild(o); }
+                ly.addEventListener('change', () => document.getElementById('lbl-loss-year').textContent = ly.value || 'AAAA');
+                
+                document.getElementById('btn-add-loss').addEventListener('click', () => { 
+                    editingRow = null;
+                    ly.value = '';
+                    document.getElementById('input-loss-saldo').value = '0';
+                    document.getElementById('input-loss-comp').value = '0';
+                    document.getElementById('disp-loss-saldo').textContent = 'S/ 0';
+                    document.getElementById('disp-loss-comp').textContent = 'S/ 0';
+                    document.getElementById('lbl-loss-year').textContent = 'AAAA';
+                    modalAssistant108.style.display='block'; 
+                });
+
+                document.getElementById('btn-assistant-cancel').addEventListener('click', () => modalAssistant108.style.display='none');
+                document.querySelector('.btn-assistant-close-x').addEventListener('click', () => modalAssistant108.style.display='none');
+                
+                document.getElementById('btn-assistant-save').addEventListener('click', () => {
+                    const y = ly.value; 
+                    if(!y) return;
+                    const s = parseFloat(document.getElementById('input-loss-saldo').value)||0;
+                    const c = parseFloat(document.getElementById('input-loss-comp').value)||0;
+                    
+                    if (editingRow) {
+                        editingRow.innerHTML = `
+                            <td style="padding:10px; text-align:center;">
+                                <i class="fas fa-pencil-alt btn-edit-loss" style="cursor:pointer; margin-right:8px; color:#337ab7;"></i>
+                                <i class="fas fa-trash-alt btn-delete-loss" style="cursor:pointer; color:#d9534f;"></i>
+                            </td>
+                            <td style="padding:10px;text-align:center;">${y}</td>
+                            <td style="padding:10px;text-align:right;">S/ ${s.toLocaleString()}</td>
+                            <td style="padding:10px;text-align:right;">S/ ${c.toLocaleString()}</td>
+                        `;
+                        editingRow.setAttribute('data-year', y);
+                        editingRow.setAttribute('data-saldo', s);
+                        editingRow.setAttribute('data-comp', c);
+                    } else {
+                        document.getElementById('no-records-row')?.remove();
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td style="padding:10px; text-align:center;">
+                                <i class="fas fa-pencil-alt btn-edit-loss" style="cursor:pointer; margin-right:8px; color:#337ab7;"></i>
+                                <i class="fas fa-trash-alt btn-delete-loss" style="cursor:pointer; color:#d9534f;"></i>
+                            </td>
+                            <td style="padding:10px;text-align:center;">${y}</td>
+                            <td style="padding:10px;text-align:right;">S/ ${s.toLocaleString()}</td>
+                            <td style="padding:10px;text-align:right;">S/ ${c.toLocaleString()}</td>
+                        `;
+                        tr.setAttribute('data-year', y);
+                        tr.setAttribute('data-saldo', s); 
+                        tr.setAttribute('data-comp', c);
+                        document.getElementById('table-losses-body').appendChild(tr);
+                    }
+                    
+                    updateLossTotals();
+                    modalAssistant108.style.display='none';
+                });
+
+                // Edit/Delete Delegation
+                document.getElementById('table-losses-body').addEventListener('click', (e) => {
+                    const tr = e.target.closest('tr');
+                    if (!tr) return;
+
+                    if (e.target.classList.contains('btn-delete-loss')) {
+                        tr.remove();
+                        if (document.getElementById('table-losses-body').children.length === 0) {
+                            const noRec = document.createElement('tr');
+                            noRec.id = 'no-records-row';
+                            noRec.innerHTML = `<td colspan="4" style="padding: 20px; text-align: center; color: #999;">No hay registros disponibles</td>`;
+                            document.getElementById('table-losses-body').appendChild(noRec);
+                        }
+                        updateLossTotals();
+                    }
+
+                    if (e.target.classList.contains('btn-edit-loss')) {
+                        editingRow = tr;
+                        const year = tr.getAttribute('data-year');
+                        const saldo = tr.getAttribute('data-saldo');
+                        const comp = tr.getAttribute('data-comp');
+
+                        ly.value = year;
+                        document.getElementById('lbl-loss-year').textContent = year;
+                        document.getElementById('input-loss-saldo').value = saldo;
+                        document.getElementById('input-loss-comp').value = comp;
+                        document.getElementById('disp-loss-saldo').textContent = 'S/ ' + parseFloat(saldo).toLocaleString();
+                        document.getElementById('disp-loss-comp').textContent = 'S/ ' + parseFloat(comp).toLocaleString();
+                        
+                        modalAssistant108.style.display='block';
+                    }
+                });
+            }
+
+            function updateLossTotals() {
+                let ts=0, tc=0; 
+                document.querySelectorAll('#table-losses-body tr[data-saldo]').forEach(r => { 
+                    ts += parseFloat(r.getAttribute('data-saldo')); 
+                    tc += parseFloat(r.getAttribute('data-comp')); 
+                });
+                document.getElementById('disp-total-loss-saldo').textContent = 'S/ ' + ts.toLocaleString();
+                document.getElementById('disp-total-loss-comp').textContent = 'S/ ' + tc.toLocaleString();
+            }
+
+            // Sync Assistant Inputs
+            function syncAssistantInput(id) {
+                const inp = document.getElementById(id);
+                if (!inp) return;
+                inp.addEventListener('blur', () => {
+                    const val = parseFloat(inp.value) || 0;
+                    inp.value = val;
+                    document.getElementById(id.replace('input-', 'disp-')).textContent = 'S/ ' + val.toLocaleString();
+                });
+            }
+            syncAssistantInput('input-loss-saldo');
+            syncAssistantInput('input-loss-comp');
+        });
+    </script>
+</body>
+</html>

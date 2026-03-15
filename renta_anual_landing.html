@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNAT - Renta Anual</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="renta_anual_landing.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header 1: Logo -->
+    <header class="header-logo">
+        <img src="favicon.png" alt="SUNAT" class="sunat-img">
+    </header>
+
+    <!-- Header 2: Blue User Bar -->
+    <header class="header-blue">
+        <div class="header-blue-left">
+            <span id="header-date">14/03/2026 15:25</span>
+        </div>
+        <div class="header-blue-right">
+            <div class="user-dropdown">
+                <span class="dropdown-trigger">
+                    Bienvenido, EMPRESA EJEMPLO S.A.C.<i class="fas fa-caret-down"></i>
+                </span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item user-info-item">EMPRESA EJEMPLO S.A.C.</div>
+                    <div class="dropdown-item user-info-item">RUC: <span id="dropdown-ruc">20123456789</span></div>
+                    <div class="dropdown-item user-info-item">Usuario: <span id="dropdown-user">ADMIN</span></div>
+                </div>
+            </div>
+            
+            <span class="domicilio">Domicilio: HABIDO</span>
+            <a href="index.html" class="btn-salir">Salir</a>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar-wrapper">
+            <a href="index.html" class="btn-ir-inicio">
+                <i class="fas fa-home"></i> Ir al Inicio
+            </a>
+
+            <div class="sidebar-menu">
+                <div class="menu-title-main">
+                    MIS DECLARACIONES Y PAGOS
+                </div>
+
+                <ul class="accordion-menu">
+                    <li class="menu-item has-children open">
+                        <div class="menu-label"><i class="fas fa-caret-down"></i> Presentación y pago</div>
+                        <ul class="submenu" style="display: block;">
+                            <li class="menu-item has-children open">
+                                <div class="menu-label"><i class="fas fa-caret-down"></i> Renta Anual</div>
+                                <ul class="submenu" style="display: block;">
+                                    <li><a href="#" class="submenu-link">709 Renta Anual PERSONAS</a></li>
+                                    <li><a href="formulario_710.html" class="submenu-link active">710 Renta Anual EMPRESAS</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-children">
+                        <div class="menu-label"><i class="fas fa-caret-right"></i> Consultas</div>
+                        <ul class="submenu" style="display: none;">
+                            <li class="menu-item has-children">
+                                <div class="menu-label"><i class="fas fa-caret-right"></i> Consultas de Presentación y Pago</div>
+                                <ul class="submenu" style="display: none;">
+                                    <li><a href="#" class="submenu-link">Consulta de Declaraciones y Pagos de Renta Anual 2019 - 2026</a></li>
+                                    <li><a href="#" class="submenu-link">Consulta de Declaraciones y Pagos - Nueva Plataforma</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content (Welcome message) -->
+        <main class="content-area">
+            <h1 class="welcome-title">Bienvenido a la Declaración Jurada Anual de Renta</h1>
+            
+            <p class="welcome-text">
+                Usted se encuentra en la Plataforma de presentación de la Declaración Jurada Anual de Renta. A través de este medio podrá presentar y pagar la declaración que le corresponde.
+                Si desea presentar su declaración jurada debe seleccionar el formulario que le corresponde de los mostrados en la columna izquierda, ya sea Persona Natural o Persona Jurídica.
+            </p>
+            
+            <p class="welcome-text">
+                Le sugerimos que cuando ingrese verifique la información que se le muestra y que lea las instrucciones que le aparecen a lo largo del formulario.
+            </p>
+        </main>
+
+    </div>
+
+    <!-- Script to update auth context dynamically -->
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dropdown logic
+            const trigger = document.querySelector('.dropdown-trigger');
+            const menu = document.querySelector('.dropdown-menu');
+            
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', () => {
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Menu Accordion Logic
+            const hasChildren = document.querySelectorAll('.has-children > .menu-label');
+            hasChildren.forEach(label => {
+                label.addEventListener('click', () => {
+                    const parent = label.parentElement;
+                    const submenu = parent.querySelector('.submenu');
+                    const icon = label.querySelector('i');
+                    
+                    if (parent.classList.contains('open')) {
+                        parent.classList.remove('open');
+                        submenu.style.display = 'none';
+                        icon.classList.replace('fa-caret-down', 'fa-caret-right');
+                    } else {
+                        parent.classList.add('open');
+                        submenu.style.display = 'block';
+                        icon.classList.replace('fa-caret-right', 'fa-caret-down');
+                    }
+                });
+            });
+
+            // Update user data from session
+            const userSession = sessionStorage.getItem('sunat_auth');
+            if (userSession) {
+                try {
+                    const userData = JSON.parse(userSession);
+                    if (userData.denominacion) {
+                        trigger.innerHTML = `Bienvenido, ${userData.denominacion}<i class="fas fa-caret-down"></i>`;
+                        const firstItem = menu.querySelector('.dropdown-item');
+                        if(firstItem) firstItem.textContent = userData.denominacion;
+                    }
+                    if (userData.ruc) {
+                        document.getElementById('dropdown-ruc').textContent = userData.ruc;
+                    }
+                    if (userData.usuario) {
+                        document.getElementById('dropdown-user').textContent = userData.usuario;
+                    }
+                } catch (e) {
+                    console.error("Error parsing user session data", e);
+                }
+            }
+
+            // Update time
+            const timeEl = document.getElementById('header-date');
+            function updateClock() {
+                const now = new Date();
+                const d = now.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                const t = now.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: false });
+                timeEl.textContent = `${d} ${t}`;
+            }
+            setInterval(updateClock, 60000); // update every minute
+            updateClock();
+        });
+    </script>
+</body>
+</html>
